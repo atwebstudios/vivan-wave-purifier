@@ -1,26 +1,87 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------
+   Design tokens — a clean, trust-focused "water" palette.
+   Tailwind v4 reads these under @theme to generate utilities
+   (e.g. --color-brand-600 -> bg-brand-600 / text-brand-600).
+------------------------------------------------------------------- */
+/* Brand blues tuned to the Vivanwave logo (royal → navy). */
+@theme {
+  --color-brand-50: #eef6fd;
+  --color-brand-100: #d6e9fb;
+  --color-brand-200: #b0d3f6;
+  --color-brand-300: #7fb6ef;
+  --color-brand-400: #4a93e4;
+  --color-brand-500: #2575d1;
+  --color-brand-600: #175db4;
+  --color-brand-700: #134c93;
+  --color-brand-800: #143f76;
+  --color-brand-900: #143560;
+  --color-brand-950: #0d2140;
+
+  /* Logo accents */
+  --color-leaf-400: #6cbf3f;
+  --color-leaf-500: #4fa62f;
+  --color-leaf-600: #3f8f27;
+  --color-gold-400: #d9b869;
+  --color-gold-500: #c9a24b;
+  --color-gold-600: #b08a37;
+
+  --color-ink: #0f1a2a;
+  --color-muted: #5b6472;
+
+  /* Page canvas + dark footer surface (matches the approved mockups). */
+  --color-surface: #f3f7fc;
+  --color-cloud: #eef4fb;
+  --color-charcoal: #1f2732;
+  --color-charcoal-700: #2b3542;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f3f7fc;
+  --foreground: #0f1a2a;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Revolving water-quality badges (hero). */
+@keyframes vw-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes vw-spin-rev {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+/* Single line of text revolving around the glass as a 3D ring (spins on its Y axis). */
+@keyframes vw-ring {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
 }
