@@ -39,8 +39,8 @@ export default function CartPage() {
         {/* Items */}
         <div className="space-y-5">
           <div className="divide-y divide-slate-100 rounded-2xl border border-slate-200 bg-white shadow-sm">
-            {lines.map(({ product, qty, lineTotal }) => (
-              <div key={product.id} className="flex gap-4 p-4 sm:p-5">
+            {lines.map(({ product, variant, qty, lineTotal }) => (
+              <div key={`${product.id}:${variant.id}`} className="flex gap-4 p-4 sm:p-5">
                 <Link
                   href={`/products/${product.slug}`}
                   className="h-24 w-24 shrink-0 overflow-hidden rounded-xl border border-slate-100"
@@ -61,11 +61,11 @@ export default function CartPage() {
                       >
                         {product.name}
                       </Link>
-                      <p className="mt-0.5 text-sm text-muted">{product.shortDesc}</p>
+                      <p className="mt-0.5 text-sm text-muted">{variant.label}</p>
                     </div>
                     <button
                       type="button"
-                      onClick={() => remove(product.id)}
+                      onClick={() => remove(product.id, variant.id)}
                       className="text-slate-400 hover:text-red-600"
                       aria-label={`Remove ${product.name}`}
                     >
@@ -74,7 +74,7 @@ export default function CartPage() {
                   </div>
                   <div className="mt-auto flex items-center justify-between pt-3">
                     <span className="text-lg font-bold text-brand-700">{formatINR(lineTotal)}</span>
-                    <QuantityStepper value={qty} onChange={(q) => setQty(product.id, q)} />
+                    <QuantityStepper value={qty} onChange={(q) => setQty(product.id, variant.id, q)} />
                   </div>
                 </div>
               </div>

@@ -1,5 +1,5 @@
 import type { Product, ResolvedCartLine } from "@/lib/types";
-import { productById } from "@/data/products";
+import { productById, getVariant } from "@/data/products";
 
 /** Minimum share of the order that must be paid in advance at checkout. */
 export const MIN_ADVANCE_RATE = 0.2; // 20%
@@ -31,15 +31,16 @@ export interface CartTotals {
   balanceDue: number;
 }
 
-/** Resolve minimal {productId, qty} lines into products + line totals. Unknown ids are dropped. */
+/** Resolve minimal {productId, variantId, qty} lines into products + variants + line totals. */
 export function resolveLines(
-  lines: { productId: string; qty: number }[],
+  lines: { productId: string; variantId: string; qty: number }[],
 ): ResolvedCartLine[] {
   const resolved: ResolvedCartLine[] = [];
   for (const line of lines) {
     const product = productById.get(line.productId);
     if (!product || line.qty <= 0) continue;
-    resolved.push({ product, qty: line.qty, lineTotal: product.price * line.qty });
+    const variant = getVariant(product, line.variantId);
+    resolved.push({ product, variant, qty: line.qty, lineTotal: variant.price * line.qty });
   }
   return resolved;
 }

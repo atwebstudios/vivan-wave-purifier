@@ -16,9 +16,9 @@ const badgeLabel: Record<NonNullable<Product["badge"]>, string> = {
   bestseller: "BESTSELLER",
 };
 
-/** Service-type items advertise availability; hardware advertises the 20% advance. */
-function isServiceItem(p: Product) {
-  return p.category === "service-kits" || p.category === "amc-services";
+/** All current products are hardware and advertise the 20% advance. */
+function isServiceItem(_p: Product) {
+  return false;
 }
 
 export function ProductCard({ product, priority }: { product: Product; priority?: boolean }) {
@@ -78,6 +78,7 @@ export function ProductCard({ product, priority }: { product: Product; priority?
         <div className="mt-auto pt-1">
           <AddToCartButton
             productId={product.id}
+            variantId={product.variants[0].id}
             size="sm"
             variant="outline"
             className="w-full border-brand-300 text-brand-700 hover:border-brand-600 hover:bg-brand-600 hover:text-white"

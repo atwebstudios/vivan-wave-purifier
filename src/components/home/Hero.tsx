@@ -40,8 +40,8 @@ export function Hero() {
             <ButtonLink href="/products" size="lg">
               Shop Now
             </ButtonLink>
-            <ButtonLink href="/products/category/amc-services" size="lg" variant="outline">
-              View Services
+            <ButtonLink href="/products/category/water-softeners" size="lg" variant="outline">
+              View Softeners
             </ButtonLink>
           </div>
 

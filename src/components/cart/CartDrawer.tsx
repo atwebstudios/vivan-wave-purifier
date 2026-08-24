@@ -59,8 +59,8 @@ export function CartDrawer() {
         ) : (
           <>
             <div className="flex-1 space-y-4 overflow-y-auto px-5 py-4">
-              {lines.map(({ product, qty, lineTotal }) => (
-                <div key={product.id} className="flex gap-3">
+              {lines.map(({ product, variant, qty, lineTotal }) => (
+                <div key={`${product.id}:${variant.id}`} className="flex gap-3">
                   <Link
                     href={`/products/${product.slug}`}
                     onClick={closeCart}
@@ -70,16 +70,19 @@ export function CartDrawer() {
                   </Link>
                   <div className="flex flex-1 flex-col">
                     <div className="flex items-start justify-between gap-2">
-                      <Link
-                        href={`/products/${product.slug}`}
-                        onClick={closeCart}
-                        className="line-clamp-2 text-sm font-semibold text-ink hover:text-brand-700"
-                      >
-                        {product.name}
-                      </Link>
+                      <div>
+                        <Link
+                          href={`/products/${product.slug}`}
+                          onClick={closeCart}
+                          className="line-clamp-2 text-sm font-semibold text-ink hover:text-brand-700"
+                        >
+                          {product.name}
+                        </Link>
+                        <p className="text-xs text-muted">{variant.label}</p>
+                      </div>
                       <button
                         type="button"
-                        onClick={() => remove(product.id)}
+                        onClick={() => remove(product.id, variant.id)}
                         className="text-xs text-slate-400 hover:text-red-600"
                         aria-label={`Remove ${product.name}`}
                       >
@@ -87,7 +90,7 @@ export function CartDrawer() {
                       </button>
                     </div>
                     <div className="mt-auto flex items-center justify-between pt-2">
-                      <QuantityStepper value={qty} onChange={(q) => setQty(product.id, q)} />
+                      <QuantityStepper value={qty} onChange={(q) => setQty(product.id, variant.id, q)} />
                       <span className="text-sm font-semibold text-ink">{formatINR(lineTotal)}</span>
                     </div>
                   </div>

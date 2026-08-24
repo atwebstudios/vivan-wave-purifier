@@ -73,6 +73,12 @@ body {
   to { transform: rotateY(360deg); }
 }
 
+/* Testimonials marquee — continuously slides the cards right to left. */
+@keyframes vw-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
 /* Respect users who prefer reduced motion. */
 @media (prefers-reduced-motion: reduce) {
   html {

@@ -28,7 +28,7 @@ export function Footer() {
             Soft Water. Pure Flow.
           </p>
           <p className="mt-3 text-sm text-muted">
-            Water softeners, RO purifiers, filters & services for Indian homes and businesses.
+            Whole-house water softeners and iron removers for Indian homes and businesses.
             Pay just 20% advance to order.
           </p>
         </div>

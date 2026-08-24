@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 /** Client island: adds a product to the cart and opens the cart drawer. */
 export function AddToCartButton({
   productId,
+  variantId,
   qty = 1,
   label = "Add to Cart",
   variant = "primary",
@@ -14,6 +15,7 @@ export function AddToCartButton({
   className,
 }: {
   productId: string;
+  variantId: string;
   qty?: number;
   label?: string;
   variant?: "primary" | "secondary" | "outline" | "ghost";
@@ -27,7 +29,7 @@ export function AddToCartButton({
       variant={variant}
       size={size}
       className={className}
-      onClick={() => add(productId, qty)}
+      onClick={() => add(productId, variantId, qty)}
     >
       <ShoppingCart className="h-4 w-4" aria-hidden />
       {label}

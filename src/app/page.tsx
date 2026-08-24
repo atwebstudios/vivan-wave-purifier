@@ -5,6 +5,7 @@ import { ProductGrid } from "@/components/product/ProductGrid";
 import { Hero } from "@/components/home/Hero";
 import { TrustBar } from "@/components/home/TrustBar";
 import { CategoryGrid } from "@/components/home/CategoryGrid";
+import { Benefits } from "@/components/home/Benefits";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { Testimonials } from "@/components/home/Testimonials";
 import { FaqAccordion } from "@/components/home/FaqAccordion";
@@ -42,6 +43,7 @@ export default function Home() {
       </section>
 
       <CategoryGrid />
+      <Benefits />
       <HowItWorks />
       <Testimonials />
 

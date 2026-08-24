@@ -18,11 +18,7 @@ const sortOptions: { key: SortKey; label: string }[] = [
 // Short chip labels shown on the shop page.
 const chipLabels: Record<string, string> = {
   "water-softeners": "Softeners",
-  "ro-purifiers": "RO Purifiers",
-  "tank-filters": "Tank Filters",
-  "appliance-filters": "Appliance",
-  "service-kits": "Service Kits",
-  "amc-services": "AMC",
+  "iron-removers": "Iron Removers",
 };
 
 const PAGE_SIZE = 8;

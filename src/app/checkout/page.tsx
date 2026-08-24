@@ -122,14 +122,14 @@ export default function CheckoutPage() {
           <h2 className="text-xl font-bold text-ink">Order Summary</h2>
 
           <div className="mt-5 space-y-4 border-b border-slate-100 pb-5">
-            {lines.map(({ product, qty, lineTotal }) => (
-              <div key={product.id} className="flex items-center gap-3">
+            {lines.map(({ product, variant, qty, lineTotal }) => (
+              <div key={`${product.id}:${variant.id}`} className="flex items-center gap-3">
                 <div className="h-14 w-14 shrink-0 overflow-hidden rounded-lg border border-slate-100">
                   <ProductImage product={product} />
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-semibold text-ink">{product.name}</p>
-                  <p className="text-xs text-muted">Qty {qty}</p>
+                  <p className="truncate text-xs text-muted">{variant.label} • Qty {qty}</p>
                 </div>
                 <span className="text-sm font-bold text-brand-700">{formatINR(lineTotal)}</span>
               </div>
