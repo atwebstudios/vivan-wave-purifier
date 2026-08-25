@@ -35,7 +35,7 @@ export default async function OrderSuccessPage({ searchParams }: PageProps<"/che
           </div>
 
           {/* Details */}
-          <div className="grid gap-4 border-t border-slate-100 p-6 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 border-t border-slate-100 p-6 sm:grid-cols-2">
             <div className="space-y-4">
               {orderId ? (
                 <div className="rounded-2xl border border-slate-200 p-4">

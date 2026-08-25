@@ -56,7 +56,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
           <span className="text-slate-700">{product.name}</span>
         </nav>
 
-        <div className="grid gap-10 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
           {/* Gallery */}
           <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
             <span className="absolute left-4 top-4 z-10 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-xs font-semibold text-emerald-700 shadow-sm">
@@ -108,7 +108,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
         {product.specs.length > 0 ? (
           <div className="mt-14">
             <h2 className="text-xl font-bold text-ink">Specifications</h2>
-            <dl className="mt-4 grid gap-x-8 gap-y-3 rounded-2xl border border-slate-200 bg-white p-6 sm:grid-cols-2">
+            <dl className="mt-4 grid grid-cols-1 gap-x-8 gap-y-3 rounded-2xl border border-slate-200 bg-white p-6 sm:grid-cols-2">
               {product.specs.map((s) => (
                 <div key={s.label} className="flex justify-between gap-4 border-b border-slate-100 pb-2">
                   <dt className="text-sm text-muted">{s.label}</dt>

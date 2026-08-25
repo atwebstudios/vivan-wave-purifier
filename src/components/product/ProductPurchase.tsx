@@ -26,7 +26,7 @@ export function ProductPurchase({ product }: { product: Product }) {
       {product.variants.length > 1 ? (
         <div className="mb-4">
           <p className="mb-2 text-sm font-medium text-slate-600">Vessel type</p>
-          <div className="grid gap-2 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
             {product.variants.map((v) => {
               const active = v.id === variantId;
               return (

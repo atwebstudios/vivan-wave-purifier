@@ -214,10 +214,10 @@ export default function CheckoutPage() {
 
   return (
     <Container className="py-10 sm:py-12">
-      <h1 className="text-4xl font-bold tracking-tight text-ink">Checkout</h1>
+      <h1 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">Checkout</h1>
       <p className="mt-2 text-muted">Please provide your details to complete the order.</p>
 
-      <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_400px]">
+      <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
         {/* Left column */}
         <div className="space-y-6">
           {/* Delivery details */}
@@ -228,7 +228,7 @@ export default function CheckoutPage() {
               </span>
               <h2 className="text-xl font-bold text-ink">Delivery Details</h2>
             </div>
-            <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Input
                 name="name"
                 label="Full Name"
@@ -300,7 +300,7 @@ export default function CheckoutPage() {
             </div>
             <p className="mt-1 text-sm text-muted">Choose how you&apos;d like to pay today.</p>
 
-            <div className="mt-5 grid gap-3 sm:grid-cols-3">
+            <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
               {options.map((o) => {
                 const active = selectedPlan === o.plan;
                 return (

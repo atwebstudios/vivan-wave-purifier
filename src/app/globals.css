@@ -38,6 +38,17 @@
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Slightly smaller type scale across the whole site (fonts only — spacing unchanged). */
+  --text-xs: 0.7rem;      /* 11.2px */
+  --text-sm: 0.8125rem;   /* 13px  */
+  --text-base: 0.9375rem; /* 15px  */
+  --text-lg: 1.0625rem;   /* 17px  */
+  --text-xl: 1.1875rem;   /* 19px  */
+  --text-2xl: 1.375rem;   /* 22px  */
+  --text-3xl: 1.6875rem;  /* 27px  */
+  --text-4xl: 2rem;       /* 32px  */
+  --text-5xl: 2.625rem;   /* 42px  */
 }
 
 :root {
@@ -47,9 +58,14 @@
 
 html {
   scroll-behavior: smooth;
+  /* Never allow horizontal scroll (contains the off-canvas cart drawer on mobile).
+     Applied on the root so position:sticky (header) keeps working. */
+  overflow-x: hidden;
 }
 
 body {
+  /* Belt-and-suspenders: keep content within the viewport width. */
+  max-width: 100%;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
