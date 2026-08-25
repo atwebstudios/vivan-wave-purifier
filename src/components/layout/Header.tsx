@@ -31,12 +31,12 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b-1 border-brand-600 bg-white/95 backdrop-blur">
       {/* Promo strip */}
       <div className="bg-brand-950 text-center text-xs font-medium text-brand-100">
-        <Container className="py-1.5">
+        <Container className="py-1.5 lg:max-w-none lg:px-0">
           Soft Water. Pure Flow. • Pay only 20% advance • Serving pan-India
         </Container>
       </div>
 
-      <Container className="relative flex h-16 items-center justify-between gap-4">
+      <Container className="relative flex h-16 items-center justify-between gap-4 lg:max-w-none lg:px-0">
         <Logo size="sm" priority />
 
         {/* Desktop nav — absolutely centered in the header */}
