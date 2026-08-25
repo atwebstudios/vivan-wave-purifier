@@ -12,7 +12,7 @@ const chips = [
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-[calc(100dvh-93px)] items-center overflow-hidden rounded-b-[2.5rem]">
+    <section className="relative flex items-center overflow-hidden rounded-b-[2.5rem] lg:min-h-[calc(100dvh-93px)]">
       {/* Background image */}
       <Image
         src="/hero-bg-2.png"
@@ -25,7 +25,7 @@ export function Hero() {
       {/* Subtle left overlay for headline legibility */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-white/60 via-white/25 to-transparent" />
 
-      <Container className="relative grid w-full items-center gap-8 py-4 lg:grid-cols-[1fr_1.2fr]">
+      <Container className="relative grid w-full items-center gap-8 py-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:py-4">
         {/* Text */}
         <div>
           <h1 className="text-4xl font-bold leading-[1.1] tracking-tight text-brand-950 sm:text-5xl">

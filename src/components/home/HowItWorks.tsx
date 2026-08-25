@@ -33,7 +33,7 @@ export function HowItWorks() {
           title="How ordering works"
           subtitle="No full payment upfront — reserve your product or service with a small advance."
         />
-        <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s) => (
             <li key={s.n} className="rounded-2xl border border-slate-200 bg-white p-5">
               <span className="grid h-10 w-10 place-items-center rounded-full bg-brand-600 text-base font-bold text-white">

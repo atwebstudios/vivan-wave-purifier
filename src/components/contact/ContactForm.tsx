@@ -30,7 +30,7 @@ export function ContactForm() {
         setSent(true);
       }}
     >
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <Field label="Name" name="name" required />
         <Field label="Phone" name="phone" type="tel" required />
       </div>

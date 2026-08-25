@@ -33,21 +33,21 @@ export default function CartPage() {
 
   return (
     <Container className="py-10 sm:py-12">
-      <h1 className="text-4xl font-bold tracking-tight text-ink">Your Cart</h1>
+      <h1 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">Your Cart</h1>
 
-      <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_380px]">
+      <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
         {/* Items */}
         <div className="space-y-5">
           <div className="divide-y divide-slate-100 rounded-2xl border border-slate-200 bg-white shadow-sm">
             {lines.map(({ product, variant, qty, lineTotal }) => (
-              <div key={`${product.id}:${variant.id}`} className="flex gap-4 p-4 sm:p-5">
+              <div key={`${product.id}:${variant.id}`} className="flex gap-3 p-4 sm:gap-4 sm:p-5">
                 <Link
                   href={`/products/${product.slug}`}
-                  className="h-24 w-24 shrink-0 overflow-hidden rounded-xl border border-slate-100"
+                  className="h-20 w-20 shrink-0 overflow-hidden rounded-xl border border-slate-100 sm:h-24 sm:w-24"
                 >
                   <ProductImage product={product} />
                 </Link>
-                <div className="flex flex-1 flex-col">
+                <div className="flex min-w-0 flex-1 flex-col">
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       {product.badge === "premium" ? (
@@ -72,7 +72,7 @@ export default function CartPage() {
                       <Trash2 className="h-5 w-5" strokeWidth={1.8} />
                     </button>
                   </div>
-                  <div className="mt-auto flex items-center justify-between pt-3">
+                  <div className="mt-auto flex flex-wrap items-center justify-between gap-2 pt-3">
                     <span className="text-lg font-bold text-brand-700">{formatINR(lineTotal)}</span>
                     <QuantityStepper value={qty} onChange={(q) => setQty(product.id, variant.id, q)} />
                   </div>
