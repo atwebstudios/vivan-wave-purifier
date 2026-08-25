@@ -56,3 +56,63 @@ export function computeTotals(lines: ResolvedCartLine[]): CartTotals {
     balanceDue: subtotal - minAdvance,
   };
 }
+
+// ---- Server-side order computation for Razorpay ----
+
+const PLAN_MULTIPLIER: Record<string, number> = {
+  twentyPercent: 0.20,
+  fiftyPercent: 0.50,
+  fullPrice: 1.0,
+};
+
+export const PLAN_LABELS: Record<string, string> = {
+  twentyPercent: "20% Advance",
+  fiftyPercent: "50% Advance",
+  fullPrice: "Full Payment",
+};
+
+export type CartItemInput = {
+  productId: string;
+  variantId: string;
+  quantity: number;
+};
+
+export type OrderLineItem = {
+  name: string;
+  variantLabel: string;
+  unitPrice: number;
+  quantity: number;
+};
+
+/**
+ * Recompute order totals server-side from the canonical product catalog.
+ * Never trusts frontend-supplied prices — only product IDs and quantities.
+ */
+export function computeOrderTotals(items: CartItemInput[], plan: string) {
+  const multiplier = PLAN_MULTIPLIER[plan];
+  if (!multiplier) throw new Error("Invalid plan");
+
+  let subtotal = 0;
+  const lineItems: OrderLineItem[] = items.map((item) => {
+    const product = productById.get(item.productId);
+    if (!product) throw new Error(`Invalid product: ${item.productId}`);
+
+    const variant = getVariant(product, item.variantId);
+    const unitPrice = variant.price;
+
+    subtotal += unitPrice * item.quantity;
+
+    return {
+      name: product.name,
+      variantLabel: variant.label,
+      unitPrice,
+      quantity: item.quantity,
+    };
+  });
+
+  const amountDueNow = Math.round(subtotal * multiplier * 100); // paise
+  const totalOrderValuePaise = subtotal * 100;
+  const remainingPaise = totalOrderValuePaise - amountDueNow;
+
+  return { lineItems, subtotal, amountDueNow, totalOrderValuePaise, remainingPaise, plan };
+}

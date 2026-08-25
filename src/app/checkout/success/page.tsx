@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Check, ReceiptText } from "lucide-react";
+import { Check, ReceiptText, Phone } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { formatINR } from "@/lib/pricing";
@@ -13,7 +13,8 @@ export default async function OrderSuccessPage({ searchParams }: PageProps<"/che
   const sp = await searchParams;
   const advance = Number(typeof sp.advance === "string" ? sp.advance : 0) || 0;
   const balance = Number(typeof sp.balance === "string" ? sp.balance : 0) || 0;
-  const orderId = "#VW-" + Math.floor(10000 + Math.random() * 89999);
+  const orderId = typeof sp.orderId === "string" ? sp.orderId : null;
+  const paymentId = typeof sp.paymentId === "string" ? sp.paymentId : null;
 
   return (
     <section className="relative overflow-hidden">
@@ -36,13 +37,16 @@ export default async function OrderSuccessPage({ searchParams }: PageProps<"/che
           {/* Details */}
           <div className="grid gap-4 border-t border-slate-100 p-6 sm:grid-cols-2">
             <div className="space-y-4">
-              <div className="rounded-2xl border border-slate-200 p-4">
-                <div className="flex items-center justify-between">
-                  <p className="text-xs font-medium text-muted">Order ID</p>
-                  <ReceiptText className="h-5 w-5 text-brand-500" strokeWidth={1.8} />
+              {orderId ? (
+                <div className="rounded-2xl border border-slate-200 p-4">
+                  <div className="flex items-center justify-between">
+                    <p className="text-xs font-medium text-muted">Order ID</p>
+                    <ReceiptText className="h-5 w-5 text-brand-500" strokeWidth={1.8} />
+                  </div>
+                  <p className="mt-1 break-all text-lg font-bold text-ink">{orderId}</p>
+                  <p className="mt-0.5 text-xs text-muted">Use this ID for all future queries</p>
                 </div>
-                <p className="mt-1 text-2xl font-bold text-ink">{orderId}</p>
-              </div>
+              ) : null}
 
               <div className="rounded-2xl border border-slate-200 p-4">
                 <div className="flex items-center justify-between border-b border-slate-100 pb-3">
@@ -60,14 +64,40 @@ export default async function OrderSuccessPage({ searchParams }: PageProps<"/che
                   </span>
                 ) : null}
               </div>
+
+              {paymentId ? (
+                <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4">
+                  <p className="text-xs font-medium text-muted">Payment ID</p>
+                  <p className="mt-1 break-all text-sm font-mono text-slate-700">{paymentId}</p>
+                </div>
+              ) : null}
             </div>
 
-            <div className="rounded-2xl border border-brand-100 bg-brand-50/60 p-5">
-              <p className="text-xs font-bold uppercase tracking-wide text-brand-700">· Next Steps</p>
-              <p className="mt-3 text-sm leading-relaxed text-slate-700">
-                Expert installation will be scheduled within <strong>24 hours</strong>. Our team will
-                contact you shortly to confirm the preferred time.
-              </p>
+            <div className="space-y-4">
+              <div className="rounded-2xl border border-brand-100 bg-brand-50/60 p-5">
+                <p className="text-xs font-bold uppercase tracking-wide text-brand-700">· Next Steps</p>
+                <p className="mt-3 text-sm leading-relaxed text-slate-700">
+                  Expert installation will be scheduled within <strong>24 hours</strong>. Our team will
+                  contact you shortly to confirm the preferred time.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-emerald-100 bg-emerald-50/60 p-5">
+                <p className="text-xs font-bold uppercase tracking-wide text-emerald-700">· Confirmation Email</p>
+                <p className="mt-3 text-sm leading-relaxed text-slate-700">
+                  A detailed receipt has been sent to your email. Please check your inbox (and spam folder).
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 p-4">
+                <div className="flex items-center gap-2">
+                  <Phone className="h-4 w-4 text-brand-600" />
+                  <p className="text-sm font-semibold text-ink">Need help?</p>
+                </div>
+                <p className="mt-1 text-sm text-muted">
+                  Contact us on WhatsApp or call with your Order ID for instant support.
+                </p>
+              </div>
             </div>
           </div>
 
