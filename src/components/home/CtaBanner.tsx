@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
 
@@ -5,8 +6,15 @@ export function CtaBanner() {
   return (
     <section className="py-14 sm:py-16">
       <Container>
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-700 to-brand-500 px-6 py-12 text-center text-white sm:px-12">
-          <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-white/10 blur-2xl" />
+        <div className="relative overflow-hidden rounded-3xl px-6 py-12 text-center text-white sm:px-12">
+          <Image
+            src="/cta-dark-pure-water-bg.jpg"
+            alt=""
+            fill
+            sizes="(max-width: 1280px) 100vw, 1200px"
+            className="absolute inset-0 object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-brand-900/70 via-brand-800/58 to-brand-700/48" />
           <h2 className="relative text-2xl font-bold sm:text-3xl">
             Ready for better water at home?
           </h2>

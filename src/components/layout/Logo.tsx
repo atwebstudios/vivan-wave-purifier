@@ -1,6 +1,3 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -9,10 +6,8 @@ type Size = "sm" | "lg";
 /**
  * Vivanwave brand logo.
  *
- * By default shows `/public/logo.png` once it verifiably loads, otherwise a clean
- * inline-SVG wordmark (so it never renders a broken-image icon). Pass `wordmarkOnly`
- * to always use the SVG mark (e.g. on the dark footer where the white-background PNG
- * wouldn't sit well), and `dark` to colour it for dark surfaces.
+ * Uses `/logo-no-bg.png` as the default logo.
+ * Pass `wordmarkOnly` to use the SVG mark instead (e.g. on the dark footer).
  */
 export function Logo({
   size = "sm",
@@ -27,26 +22,6 @@ export function Logo({
   dark?: boolean;
   wordmarkOnly?: boolean;
 }) {
-  const [logoSrc, setLogoSrc] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (wordmarkOnly) return;
-    const candidates = ["/logo.png", "/logo.jpg", "/logo.jpeg", "/logo.webp", "/logo.svg"];
-    let cancelled = false;
-    (function probe(i: number) {
-      if (cancelled || i >= candidates.length) return;
-      const img = new window.Image();
-      img.onload = () => {
-        if (!cancelled && img.naturalWidth > 1) setLogoSrc(candidates[i]);
-      };
-      img.onerror = () => probe(i + 1);
-      img.src = candidates[i];
-    })(0);
-    return () => {
-      cancelled = true;
-    };
-  }, [wordmarkOnly]);
-
   const imgHeight = size === "lg" ? "h-16" : "h-14";
 
   return (
@@ -55,10 +30,10 @@ export function Logo({
       aria-label="Vivanwave — home"
       className={cn("inline-flex items-center", className)}
     >
-      {logoSrc && !wordmarkOnly ? (
+      {!wordmarkOnly ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={logoSrc}
+          src="/logo-no-bg.png"
           alt="Vivanwave"
           fetchPriority={priority ? "high" : undefined}
           className={cn("w-auto", imgHeight)}
