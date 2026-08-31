@@ -17,6 +17,12 @@ export const categories: Category[] = [
     tagline: "Remove excess iron, staining, metallic taste & odour.",
     gradient: "from-teal-600 to-emerald-400",
   },
+  {
+    slug: "ro-ionizers",
+    name: "RO + Ionizers",
+    tagline: "Smart RO purification with alkaline ionized water.",
+    gradient: "from-slate-800 to-brand-700",
+  },
 ];
 
 export const categoryBySlug = new Map(categories.map((c) => [c.slug, c]));

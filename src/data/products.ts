@@ -201,6 +201,40 @@ export const products: Product[] = [
       { id: "ss304", label: "SS 304 Stainless Steel Vessel", mrp: 46990, price: 39990 },
     ],
   },
+
+  // ---------------- RO + Ionizers ----------------
+  {
+    id: "ro-ionizer-50",
+    badge: "premium",
+    slug: "ro-ionizer-50lph",
+    name: "RO + Ionizer 50 LPH",
+    category: "ro-ionizers",
+    shortDesc: "Smart RO + UV purifier with alkaline ionizer.",
+    longDesc:
+      "The Vivanwave RO + Ionizer combines multi-stage RO + UV purification with an alkaline ionizer to deliver pure, mineral-balanced, great-tasting water. A smart touchscreen puts purification, ionization and dispensing at your fingertips, in a premium countertop design ideal for homes, offices and cafes.",
+    specs: [
+      { label: "Purification", value: "RO + UV + Alkaline Ionizer" },
+      { label: "Output", value: "Up to 50 LPH" },
+      { label: "Controls", value: "Smart Touchscreen Display" },
+      { label: "Water Type", value: "Alkaline, Mineral-Balanced" },
+      { label: "Installation", value: "Countertop / Wall Mount" },
+      { label: "Best for", value: "Homes, Offices & Cafes" },
+    ],
+    images: ["/Ionizer.png"],
+    mrp: 42990,
+    price: 34990,
+    rating: 4.7,
+    reviewCount: 42,
+    isFeatured: true,
+    highlights: [
+      "RO + UV purification with alkaline ionizer",
+      "Smart touchscreen controls",
+      "Mineral-balanced, great-tasting water",
+      "Up to 50 LPH output",
+      "Premium countertop design",
+    ],
+    variants: [{ id: "standard", label: "Standard", mrp: 42990, price: 34990 }],
+  },
 ];
 
 // ---- Lookups & helpers ----

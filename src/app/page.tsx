@@ -14,8 +14,12 @@ import { getFeaturedProducts } from "@/data/products";
 import { faqs } from "@/data/faqs";
 
 export default function Home() {
-  // Cap at 4 so the grid fills exactly one row (no lonely card wrapping to the next line).
-  const featured = getFeaturedProducts().slice(0, 4);
+  // Show a varied row of 4: put the RO + Ionizer up front, then fill with the other
+  // featured products. Capped at 4 so the grid fills exactly one row (no lonely card).
+  const allFeatured = getFeaturedProducts();
+  const ionizer = allFeatured.filter((p) => p.category === "ro-ionizers");
+  const rest = allFeatured.filter((p) => p.category !== "ro-ionizers");
+  const featured = [...ionizer, ...rest].slice(0, 4);
 
   return (
     <>

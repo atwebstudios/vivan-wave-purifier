@@ -1,7 +1,7 @@
 // Core domain types for the storefront.
 // NOTE: there is intentionally NO stock/inventory field — every product is always available.
 
-export type CategorySlug = "water-softeners" | "iron-removers";
+export type CategorySlug = "water-softeners" | "iron-removers" | "ro-ionizers";
 
 export interface Category {
   slug: CategorySlug;

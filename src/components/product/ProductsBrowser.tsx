@@ -19,6 +19,7 @@ const sortOptions: { key: SortKey; label: string }[] = [
 const chipLabels: Record<string, string> = {
   "water-softeners": "Softeners",
   "iron-removers": "Iron Removers",
+  "ro-ionizers": "RO + Ionizers",
 };
 
 const PAGE_SIZE = 8;

@@ -79,7 +79,17 @@ export function Footer() {
       <div className="border-t border-slate-200">
         <Container className="flex flex-col items-center justify-between gap-2 py-5 text-sm text-muted sm:flex-row">
           <p>© {new Date().getFullYear()} Vivanwave. All rights reserved.</p>
-          <p>Soft Water · Pure Flow · India</p>
+          <p>
+            Made with <span className="text-red-500">❤&#xFE0E;</span> by{" "}
+            <a
+              href="https://www.atwebstudios.com.au/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-brand-700 hover:underline"
+            >
+              AtWebStudios
+            </a>
+          </p>
         </Container>
       </div>
     </footer>

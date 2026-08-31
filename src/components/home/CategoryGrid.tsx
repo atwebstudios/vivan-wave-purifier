@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Droplets, Filter, ArrowRight } from "lucide-react";
+import { Droplets, Filter, Zap, ArrowRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -11,6 +11,7 @@ import type { CategorySlug } from "@/lib/types";
 const categoryMeta: Record<CategorySlug, { Icon: LucideIcon; image: string }> = {
   "water-softeners": { Icon: Droplets, image: "/cat-softeners.webp" },
   "iron-removers": { Icon: Filter, image: "/cat-iron.webp" },
+  "ro-ionizers": { Icon: Zap, image: "/Ionizer.png" },
 };
 
 export function CategoryGrid() {
@@ -23,7 +24,7 @@ export function CategoryGrid() {
           subtitle="Whole-house water softeners and iron removers for every home and business."
         />
 
-        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
           {categories.map((c) => {
             const { Icon, image } = categoryMeta[c.slug];
             const count = getProductsByCategory(c.slug).length;
