@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { PackageSearch, RotateCcw } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { categories } from "@/data/categories";
 import { ProductGrid } from "@/components/product/ProductGrid";
@@ -18,9 +19,15 @@ const sortOptions: { key: SortKey; label: string }[] = [
 // Short chip labels shown on the shop page.
 const chipLabels: Record<string, string> = {
   "water-softeners": "Softeners",
+  "aqua-clean": "Aqua Clean",
+  "dual-combo": "Combo",
   "iron-removers": "Iron Removers",
+  "tank-filters": "Tank Filters",
   "ro-ionizers": "RO + Ionizers",
+  "spare-filters": "Spares",
 };
+
+type OpFilter = "all" | "Manual" | "Automatic";
 
 const PAGE_SIZE = 8;
 
@@ -32,6 +39,7 @@ export function ProductsBrowser({
   initialQuery?: string;
 }) {
   const [category, setCategory] = useState<string>("all");
+  const [op, setOp] = useState<OpFilter>("all");
   const [sort, setSort] = useState<SortKey>("featured");
   const [page, setPage] = useState(1);
   const q = initialQuery.trim().toLowerCase();
@@ -39,12 +47,13 @@ export function ProductsBrowser({
   const filtered = useMemo(() => {
     let list = products.filter((p) => {
       const matchesCategory = category === "all" || p.category === category;
+      const matchesOp = op === "all" || (p.operations?.includes(op) ?? false);
       const matchesQuery =
         !q ||
         p.name.toLowerCase().includes(q) ||
         p.shortDesc.toLowerCase().includes(q) ||
         p.category.toLowerCase().includes(q);
-      return matchesCategory && matchesQuery;
+      return matchesCategory && matchesOp && matchesQuery;
     });
 
     list = [...list].sort((a, b) => {
@@ -60,10 +69,10 @@ export function ProductsBrowser({
       }
     });
     return list;
-  }, [products, q, category, sort]);
+  }, [products, q, category, op, sort]);
 
   // Reset to page 1 whenever the result set changes.
-  useEffect(() => setPage(1), [category, sort, q]);
+  useEffect(() => setPage(1), [category, op, sort, q]);
 
   const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const current = Math.min(page, pageCount);
@@ -97,8 +106,8 @@ export function ProductsBrowser({
         </label>
       </div>
 
-      {/* Category chips */}
-      <div className="mt-6 flex flex-wrap gap-2">
+      {/* Category chips — horizontal scroll on mobile, wrap on larger screens */}
+      <div className="mt-6 -mx-4 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:px-0 sm:pb-0 [&::-webkit-scrollbar]:hidden">
         <Chip active={category === "all"} onClick={() => setCategory("all")}>
           All
         </Chip>
@@ -109,8 +118,45 @@ export function ProductsBrowser({
         ))}
       </div>
 
+      {/* Operation filter — horizontal scroll on mobile, wrap on larger screens */}
+      <div className="mt-3 -mx-4 flex items-center gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:px-0 sm:pb-0 [&::-webkit-scrollbar]:hidden">
+        <span className="shrink-0 text-xs font-medium text-slate-500">Operation:</span>
+        {(["all", "Manual", "Automatic"] as OpFilter[]).map((o) => (
+          <Chip key={o} active={op === o} onClick={() => setOp(o)}>
+            {o === "all" ? "All" : o}
+          </Chip>
+        ))}
+      </div>
+
       <div className="mt-8">
-        <ProductGrid products={pageItems} priorityCount={4} />
+        {filtered.length === 0 ? (
+          <div className="flex flex-col items-center justify-center rounded-2xl border border-slate-200 bg-white px-6 py-16 text-center shadow-sm">
+            <span className="grid h-16 w-16 place-items-center rounded-full bg-brand-50 text-brand-600">
+              <PackageSearch className="h-8 w-8" strokeWidth={1.6} />
+            </span>
+            <h3 className="mt-5 text-lg font-bold text-ink">No products match your filters</h3>
+            <p className="mt-1.5 max-w-sm text-sm text-muted">
+              {op !== "all" && category !== "all"
+                ? `We don't have ${op} products in ${chipLabels[category] ?? "this category"} yet.`
+                : op !== "all"
+                  ? `Manual / Automatic options apply to softeners, Aqua Clean, combos and iron removers.`
+                  : "Try a different category or clear your filters to see everything."}
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                setCategory("all");
+                setOp("all");
+              }}
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+            >
+              <RotateCcw className="h-4 w-4" />
+              Clear all filters
+            </button>
+          </div>
+        ) : (
+          <ProductGrid products={pageItems} priorityCount={4} />
+        )}
       </div>
 
       {/* Pagination */}
@@ -147,7 +193,7 @@ function Chip({
       type="button"
       onClick={onClick}
       className={cn(
-        "rounded-full border px-4 py-1.5 text-sm font-medium transition-colors",
+        "shrink-0 rounded-full border px-3 py-1 text-xs font-medium transition-colors sm:px-4 sm:py-1.5 sm:text-sm",
         active
           ? "border-brand-700 bg-brand-700 text-white"
           : "border-slate-300 bg-white text-slate-700 hover:border-brand-400 hover:text-brand-700",

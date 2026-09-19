@@ -16,7 +16,7 @@ export const policies: Policy[] = [
     intro:
       "These terms govern your use of the Vivanwave website and the purchase of our products and services.",
     sections: [
-      { heading: "Orders & advance payment", body: "Orders are confirmed on payment of a minimum 20% advance. The balance is payable at delivery or installation unless stated otherwise." },
+      { heading: "Orders & advance payment", body: "Orders are confirmed on payment of a minimum 10% advance. The balance is payable at delivery or installation unless stated otherwise." },
       { heading: "Pricing", body: "All prices are shown in Indian Rupees and are inclusive of applicable taxes. Prices may change without prior notice." },
       { heading: "Service delivery", body: "Delivery and installation timelines vary by location and will be confirmed by our team after your order." },
     ],

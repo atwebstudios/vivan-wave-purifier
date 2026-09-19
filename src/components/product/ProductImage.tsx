@@ -23,14 +23,19 @@ export function ProductImage({
 
   if (src) {
     return (
-      <div className={cn("relative aspect-square overflow-hidden", className)}>
+      <div
+        className={cn(
+          "relative aspect-square overflow-hidden bg-gradient-to-br from-slate-50 to-brand-50/60",
+          className,
+        )}
+      >
         <Image
           src={src}
           alt={product.name}
           fill
           priority={priority}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-          className="object-cover"
+          className="object-contain p-3"
         />
       </div>
     );

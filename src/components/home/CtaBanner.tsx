@@ -19,7 +19,7 @@ export function CtaBanner() {
             Ready for better water at home?
           </h2>
           <p className="relative mx-auto mt-3 max-w-xl text-brand-100">
-            Reserve your softener, purifier or filter today with just 20% advance.
+            Reserve your softener, purifier or filter today with just 10% advance.
           </p>
           <div className="relative mt-7 flex justify-center">
             <ButtonLink href="/products" size="lg" variant="secondary">

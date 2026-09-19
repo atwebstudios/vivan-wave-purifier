@@ -6,7 +6,7 @@ import { products } from "@/data/products";
 export const metadata: Metadata = {
   title: "Shop All Products",
   description:
-    "Browse water softeners, RO purifiers, tank filters, appliance filters and services. Pay just 20% advance to order.",
+    "Browse water softeners, RO purifiers, tank filters, appliance filters and services. Pay just 10% advance to order.",
 };
 
 export default async function ProductsPage({ searchParams }: PageProps<"/products">) {

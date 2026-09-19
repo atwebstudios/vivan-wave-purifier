@@ -2,7 +2,7 @@ import { Wallet, PackageCheck, Wrench, Sparkles } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 
 const items = [
-  { label: "Pay 20% Advance", Icon: Wallet },
+  { label: "Pay 10% Advance", Icon: Wallet },
   { label: "Always in Stock", Icon: PackageCheck },
   { label: "Expert Installation", Icon: Wrench },
   { label: "Genuine Spares", Icon: Sparkles },

@@ -65,7 +65,7 @@ function customerReceiptHtml(data: OrderEmailData): string {
   <div style="font-family:'Segoe UI',Roboto,sans-serif;max-width:600px;margin:0 auto;background:#ffffff;">
     <!-- Header -->
     <div style="background:linear-gradient(135deg,#0f766e,#115e59);padding:32px 24px;text-align:center;border-radius:8px 8px 0 0;">
-      <h1 style="margin:0;color:#ffffff;font-size:24px;font-weight:700;">Vivaan Wave</h1>
+      <h1 style="margin:0;color:#ffffff;font-size:24px;font-weight:700;">Vivanwave</h1>
       <p style="margin:8px 0 0;color:#99f6e4;font-size:14px;">Order Confirmation</p>
     </div>
 
@@ -134,7 +134,7 @@ function customerReceiptHtml(data: OrderEmailData): string {
 
     <!-- Footer -->
     <div style="background:#f8fafc;padding:16px 24px;text-align:center;border-radius:0 0 8px 8px;border-top:1px solid #e2e8f0;">
-      <p style="margin:0;color:#94a3b8;font-size:12px;">© ${new Date().getFullYear()} Vivaan Wave. Soft Water. Pure Flow.</p>
+      <p style="margin:0;color:#94a3b8;font-size:12px;">© ${new Date().getFullYear()} Vivanwave. Soft Water. Pure Flow.</p>
       <p style="margin:4px 0 0;color:#94a3b8;font-size:11px;">Razorpay Payment ID: ${data.razorpayPaymentId}</p>
     </div>
   </div>`;
@@ -199,7 +199,7 @@ function vendorNotificationHtml(data: OrderEmailData): string {
 
     <!-- Footer -->
     <div style="background:#f8fafc;padding:12px 24px;text-align:center;border-radius:0 0 8px 8px;border-top:1px solid #e2e8f0;">
-      <p style="margin:0;color:#94a3b8;font-size:11px;">Vivaan Wave — Automated Order Notification</p>
+      <p style="margin:0;color:#94a3b8;font-size:11px;">Vivanwave — Automated Order Notification</p>
     </div>
   </div>`;
 }
@@ -208,7 +208,7 @@ export async function sendCustomerReceipt(data: OrderEmailData) {
   await resend.emails.send({
     from: process.env.EMAIL_FROM!,
     to: data.customer.email,
-    subject: `Order Confirmed — ${data.razorpayOrderId} | Vivaan Wave`,
+    subject: `Order Confirmed — ${data.razorpayOrderId} | Vivanwave`,
     html: customerReceiptHtml(data),
   });
 }

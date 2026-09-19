@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s • Vivanwave",
   },
   description:
-    "Buy water softeners, RO purifiers, tank filters and services online. Pay just 20% advance to place your order. Serving homes and businesses across India.",
+    "Buy water softeners, RO purifiers, tank filters and services online. Pay just 10% advance to place your order. Serving homes and businesses across India.",
   icons: { icon: "/favicon.png", apple: "/favicon.png" },
 };
 

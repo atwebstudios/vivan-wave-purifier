@@ -31,7 +31,7 @@ export function Benefits() {
       <Container>
         <SectionHeading
           eyebrow="India's Bestselling Water Softener Brand"
-          title="Why families choose Vivaan Wave"
+          title="Why families choose Vivanwave"
           subtitle="Softer water that protects your home, your appliances and your family — delivered and installed with care."
         />
 

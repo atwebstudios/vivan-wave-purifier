@@ -5,8 +5,8 @@ export interface Faq {
 
 export const faqs: Faq[] = [
   {
-    q: "How does the 20% advance payment work?",
-    a: "When you place an order, you pay a minimum of 20% of the total online to confirm it. The remaining balance is collected later, typically at the time of delivery or installation. You can also choose to pay more than 20% up front if you prefer.",
+    q: "How does the 10% advance payment work?",
+    a: "When you place an order, you pay a minimum of 10% of the total online to confirm it. The remaining balance is collected later, typically at the time of delivery or installation. You can also choose to pay more than 10% up front if you prefer.",
   },
   {
     q: "Are all products always in stock?",

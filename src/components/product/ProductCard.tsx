@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { Star, CreditCard } from "lucide-react";
+import { Star, CreditCard, Flame } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { ProductImage } from "@/components/product/ProductImage";
 import { AddToCartButton } from "@/components/product/AddToCartButton";
 import { Price } from "@/components/ui/Price";
-import { formatINR, MIN_ADVANCE_RATE } from "@/lib/pricing";
+import { formatINR, MIN_ADVANCE_RATE, soldRecently } from "@/lib/pricing";
 import { cn } from "@/lib/utils";
 
 const badgeStyles: Record<NonNullable<Product["badge"]>, string> = {
@@ -16,7 +16,12 @@ const badgeLabel: Record<NonNullable<Product["badge"]>, string> = {
   bestseller: "BESTSELLER",
 };
 
-/** All current products are hardware and advertise the 20% advance. */
+const tagMeta: Record<NonNullable<Product["tag"]>, { label: string; className: string }> = {
+  iron: { label: "Iron Reduction", className: "bg-orange-100 text-orange-700" },
+  multistage: { label: "Multi-Stage Protection", className: "bg-blue-100 text-blue-700" },
+};
+
+/** All current products are hardware and advertise the advance-payment model. */
 function isServiceItem(_p: Product) {
   return false;
 }
@@ -61,6 +66,23 @@ export function ProductCard({ product, priority }: { product: Product; priority?
           {product.name}
         </Link>
 
+        <div className="flex flex-wrap items-center gap-2">
+          {product.tag ? (
+            <span
+              className={cn(
+                "inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-semibold",
+                tagMeta[product.tag].className,
+              )}
+            >
+              {tagMeta[product.tag].label}
+            </span>
+          ) : null}
+          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-red-600">
+            <Flame className="h-3.5 w-3.5 fill-red-500 text-red-500" />
+            {soldRecently(product.id)} sold in last 24 hours
+          </span>
+        </div>
+
         <Price price={product.price} mrp={product.mrp} />
 
         {isServiceItem(product) ? (
@@ -71,7 +93,7 @@ export function ProductCard({ product, priority }: { product: Product; priority?
         ) : (
           <span className="inline-flex items-center gap-1.5 self-start rounded-lg bg-slate-100 px-2.5 py-1.5 text-xs font-medium text-slate-600">
             <CreditCard className="h-3.5 w-3.5" />
-            Pay just {formatINR(advance)} (20%) now
+            Pay just {formatINR(advance)} ({Math.round(MIN_ADVANCE_RATE * 100)}%) now
           </span>
         )}
 
