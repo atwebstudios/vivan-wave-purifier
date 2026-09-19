@@ -11,7 +11,7 @@ export const testimonials: Testimonial[] = [
     location: "Pune, Maharashtra",
     rating: 5,
     quote:
-      "The softener fixed our hard-water scaling completely. Booking with just 20% advance made it easy to decide.",
+      "The softener fixed our hard-water scaling completely. Booking with just 10% advance made it easy to decide.",
   },
   {
     name: "Anjali Verma",

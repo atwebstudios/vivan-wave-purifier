@@ -9,8 +9,8 @@ const steps = [
   },
   {
     n: "2",
-    title: "Pay 20% advance",
-    desc: "Confirm your order by paying just 20% securely online.",
+    title: "Pay 10% advance",
+    desc: "Confirm your order by paying just 10% securely online.",
   },
   {
     n: "3",

@@ -33,7 +33,7 @@ export function Hero() {
           </h1>
           <p className="mt-5 max-w-lg text-lg text-slate-700">
             The most trusted purification solutions with expert installation across India — always
-            available, pay just 20% advance to order.
+            available, pay just 10% advance to order.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">

@@ -1,16 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Check } from "lucide-react";
+import { Check, Flame, Eye } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProductImage } from "@/components/product/ProductImage";
 import { ProductPurchase } from "@/components/product/ProductPurchase";
+import { ProductReviews } from "@/components/product/ProductReviews";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { Price } from "@/components/ui/Price";
 import { Rating } from "@/components/ui/Rating";
 import { getCategory } from "@/data/categories";
 import { getProduct, getRelatedProducts, products } from "@/data/products";
+import { soldRecently, viewersNow } from "@/lib/pricing";
+
+const tagMeta = {
+  iron: { label: "Iron Reduction", className: "bg-orange-100 text-orange-700" },
+  multistage: { label: "Multi-Stage Protection", className: "bg-blue-100 text-blue-700" },
+} as const;
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -58,7 +65,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
 
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
           {/* Gallery */}
-          <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+          <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white lg:sticky lg:top-24 lg:self-start">
             <span className="absolute left-4 top-4 z-10 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-xs font-semibold text-emerald-700 shadow-sm">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
               Always Available
@@ -77,8 +84,25 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
               </Link>
             ) : null}
             <h1 className="mt-2 text-3xl font-bold tracking-tight text-ink">{product.name}</h1>
+            {product.tag ? (
+              <span
+                className={`mt-3 inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold ${tagMeta[product.tag].className}`}
+              >
+                {tagMeta[product.tag].label}
+              </span>
+            ) : null}
             <div className="mt-3">
               <Rating value={product.rating} count={product.reviewCount} />
+            </div>
+            <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5">
+              <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-red-600">
+                <Flame className="h-4 w-4 fill-red-500 text-red-500" />
+                {soldRecently(product.id)} sold in last 24 hours
+              </span>
+              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500">
+                <Eye className="h-4 w-4" />
+                {viewersNow(product.id)} people are viewing this
+              </span>
             </div>
             <div className="mt-4">
               <Price price={product.price} mrp={product.mrp} size="lg" />
@@ -118,6 +142,9 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
             </dl>
           </div>
         ) : null}
+
+        {/* Reviews */}
+        <ProductReviews product={product} />
 
         {/* Related */}
         {related.length > 0 ? (

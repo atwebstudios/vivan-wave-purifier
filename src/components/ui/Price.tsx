@@ -22,9 +22,11 @@ export function Price({
       <span className={cn("font-bold text-ink", priceSize)}>{formatINR(price)}</span>
       {off > 0 && mrp ? (
         <>
-          <span className="text-sm text-slate-400 line-through">{formatINR(mrp)}</span>
-          <span className="text-xs font-bold uppercase tracking-wide text-emerald-600">
-            {off}% off
+          <span className="text-base font-semibold text-rose-500 line-through decoration-rose-400 decoration-[1.5px]">
+            {formatINR(mrp)}
+          </span>
+          <span className="rounded-md bg-emerald-100 px-1.5 py-0.5 text-xs font-bold uppercase tracking-wide text-emerald-700">
+            {off}% OFF
           </span>
         </>
       ) : null}

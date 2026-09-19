@@ -8,7 +8,6 @@ const quickLinks = [
   { href: "/about", label: "About Us" },
   { href: "/contact", label: "Contact" },
   { href: "/faq", label: "FAQs" },
-  { href: "/service-network", label: "Service Network" },
 ];
 
 const policyLinks = [
@@ -29,7 +28,7 @@ export function Footer() {
           </p>
           <p className="mt-3 text-sm text-muted">
             Whole-house water softeners and iron removers for Indian homes and businesses.
-            Pay just 20% advance to order.
+            Pay just 10% advance to order.
           </p>
         </div>
 

@@ -58,7 +58,7 @@ const standards = [
   { Icon: FlaskConical, title: "Food-grade resin & quality media", desc: "We use safe, high-capacity ion-exchange resin and filtration media chosen for long, dependable service life." },
   { Icon: Cog, title: "Fully-automatic engineering", desc: "Programmable valves handle regeneration and backwash on their own — reliable performance with minimal manual effort." },
   { Icon: BadgeCheck, title: "Professional installation & testing", desc: "Trained technicians fit every system and run a water-quality check, so it's set up correctly for your water." },
-  { Icon: Handshake, title: "Honest, transparent pricing", desc: "A clear 20% advance to order and the balance at delivery — no hidden costs, no pressure selling." },
+  { Icon: Handshake, title: "Honest, transparent pricing", desc: "A clear 10% advance to order and the balance at delivery — no hidden costs, no pressure selling." },
 ];
 
 const promises = [

@@ -2,7 +2,7 @@ import type { Product, ResolvedCartLine } from "@/lib/types";
 import { productById, getVariant } from "@/data/products";
 
 /** Minimum share of the order that must be paid in advance at checkout. */
-export const MIN_ADVANCE_RATE = 0.2; // 20%
+export const MIN_ADVANCE_RATE = 0.1; // 10%
 
 /** Prices are treated as GST-inclusive, so this is informational only. */
 export const GST_RATE = 0.18;
@@ -16,6 +16,36 @@ export function formatINR(amount: number): string {
   }).format(amount);
 }
 
+/**
+ * Deterministic "units sold recently" figure derived from a product id, so every
+ * product shows a different number and it stays identical between server and client
+ * renders (no hydration mismatch, no flicker). Range ~9–41.
+ */
+export function soldRecently(id: string): number {
+  let hash = 0;
+  for (let i = 0; i < id.length; i++) hash = (hash * 31 + id.charCodeAt(i)) >>> 0;
+  return 9 + (hash % 33);
+}
+
+/** Deterministic "people viewing this product right now" figure (~6–23). */
+export function viewersNow(id: string): number {
+  let hash = 0;
+  for (let i = 0; i < id.length; i++) hash = (hash * 37 + id.charCodeAt(i)) >>> 0;
+  return 6 + (hash % 18);
+}
+
+/**
+ * Deterministic MRP for products supplied with only a selling price. Generates a clean
+ * ₹100-rounded MRP so a 15–20% discount shows (varies per product via the seed).
+ */
+export function deriveMrp(price: number, seed: string): number {
+  let hash = 0;
+  for (let i = 0; i < seed.length; i++) hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
+  const discount = 15 + (hash % 6); // 15–20%
+  const raw = price / (1 - discount / 100);
+  return Math.round(raw / 100) * 100;
+}
+
 /** Discount percentage from MRP to selling price (rounded), or 0 when no discount. */
 export function discountPercent(product: Pick<Product, "mrp" | "price">): number {
   if (product.mrp <= 0 || product.price >= product.mrp) return 0;
@@ -25,7 +55,7 @@ export function discountPercent(product: Pick<Product, "mrp" | "price">): number
 export interface CartTotals {
   itemCount: number;
   subtotal: number;
-  /** Minimum advance payable now (20% of subtotal, rounded to whole rupees). */
+  /** Minimum advance payable now (10% of subtotal, rounded to whole rupees). */
   minAdvance: number;
   /** Balance remaining after the minimum advance. */
   balanceDue: number;
@@ -60,13 +90,13 @@ export function computeTotals(lines: ResolvedCartLine[]): CartTotals {
 // ---- Server-side order computation for Razorpay ----
 
 const PLAN_MULTIPLIER: Record<string, number> = {
-  twentyPercent: 0.20,
+  tenPercent: 0.10,
   fiftyPercent: 0.50,
   fullPrice: 1.0,
 };
 
 export const PLAN_LABELS: Record<string, string> = {
-  twentyPercent: "20% Advance",
+  tenPercent: "10% Advance",
   fiftyPercent: "50% Advance",
   fullPrice: "Full Payment",
 };

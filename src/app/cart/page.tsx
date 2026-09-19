@@ -21,7 +21,7 @@ export default function CartPage() {
           </div>
           <h1 className="mt-5 text-2xl font-bold text-ink">Your cart is empty</h1>
           <p className="mt-2 text-muted">
-            Add water softeners, purifiers or filters — pay just 20% to reserve them.
+            Add water softeners, purifiers or filters — pay just 10% to reserve them.
           </p>
           <ButtonLink href="/products" size="lg" className="mt-6">
             Browse products
@@ -124,7 +124,7 @@ export default function CartPage() {
             <div className="flex items-center gap-2">
               <BadgeCheck className="h-5 w-5" />
               <div>
-                <p className="text-sm font-bold leading-tight">Advance Payable Now (20%)</p>
+                <p className="text-sm font-bold leading-tight">Advance Payable Now (10%)</p>
                 <p className="text-xs text-brand-100">Secure your order and schedule installation.</p>
               </div>
             </div>

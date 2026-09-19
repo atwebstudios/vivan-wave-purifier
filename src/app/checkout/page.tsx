@@ -19,10 +19,10 @@ declare global {
   }
 }
 
-type Plan = "twentyPercent" | "fiftyPercent" | "fullPrice";
+type Plan = "tenPercent" | "fiftyPercent" | "fullPrice";
 
 const options: { plan: Plan; rate: number; label: string; note: string; recommended?: boolean }[] = [
-  { plan: "twentyPercent", rate: 0.2, label: "20% Advance", note: "Pay balance on delivery", recommended: true },
+  { plan: "tenPercent", rate: 0.1, label: "10% Advance", note: "Pay balance on delivery", recommended: true },
   { plan: "fiftyPercent", rate: 0.5, label: "50% Advance", note: "Pay balance on delivery" },
   { plan: "fullPrice", rate: 1, label: "Full Payment", note: "Hassle-free delivery" },
 ];
@@ -48,7 +48,7 @@ const emptyForm: CustomerForm = {
 export default function CheckoutPage() {
   const { lines, totals, ready, clear } = useCart();
   const router = useRouter();
-  const [selectedPlan, setSelectedPlan] = useState<Plan>("twentyPercent");
+  const [selectedPlan, setSelectedPlan] = useState<Plan>("tenPercent");
   const [form, setForm] = useState<CustomerForm>(emptyForm);
   const [errors, setErrors] = useState<Partial<Record<keyof CustomerForm, string>>>({});
   const [loading, setLoading] = useState(false);
@@ -143,7 +143,7 @@ export default function CheckoutPage() {
         key: data.keyId,
         amount: data.amount,
         currency: "INR",
-        name: "Vivaan Wave",
+        name: "Vivanwave",
         description: `${currentOption.label} — Water Treatment`,
         order_id: data.orderId,
         prefill: {
