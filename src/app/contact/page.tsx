@@ -11,16 +11,16 @@ export const metadata: Metadata = {
     "Get in touch with Vivanwave — call, WhatsApp or email us for product advice, installation and support across India.",
 };
 
-const PHONE = "+91 99990 12123";
-const WHATSAPP = "919999012123";
-const EMAIL = "support@vivanwave.com";
+const PHONE = "+91 9310 880635";
+const WHATSAPP = "919310880635";
+const EMAIL = "vivanwave@gmail.com";
 
 const methods = [
   {
     Icon: Phone,
     label: "Call us",
     value: PHONE,
-    href: "tel:+919999012123",
+    href: "tel:+919310880635",
     action: "Tap to call",
   },
   {
@@ -40,10 +40,10 @@ const methods = [
   },
   {
     Icon: MapPin,
-    label: "Service area",
-    value: "Serving homes & businesses pan-India",
-    href: "/service-network",
-    action: "See coverage",
+    label: "Office Address",
+    value: "Ace Medley Avenue, Sec 149, Noida",
+    href: "#office",
+    action: "View address",
   },
 ];
 
@@ -134,6 +134,16 @@ export default function ContactPage() {
                   Chat on WhatsApp
                 </ButtonLink>
               </div>
+            </div>
+
+            <div id="office" className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <span className="grid h-10 w-10 place-items-center rounded-xl bg-brand-50 text-brand-700">
+                <MapPin className="h-5 w-5" strokeWidth={1.8} />
+              </span>
+              <h3 className="mt-3 font-semibold text-ink">Office Address</h3>
+              <p className="mt-1 text-sm leading-relaxed text-muted">
+                Vivan Wave, Ace Medley Avenue, 3rd Floor Shop no 28 &amp; Lower Ground Floor Shop No 1, Sector 149, Noida, UP - 201306
+              </p>
             </div>
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

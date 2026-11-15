@@ -2,7 +2,7 @@ import { RiWhatsappFill } from "@remixicon/react";
 import { cn } from "@/lib/utils";
 
 /** Floating WhatsApp contact button. Replace the number with the client's WhatsApp line. */
-export function WhatsAppButton({ phone = "919999012123" }: { phone?: string }) {
+export function WhatsAppButton({ phone = "919310880635" }: { phone?: string }) {
   const href = `https://wa.me/${phone}?text=${encodeURIComponent(
     "Hi Vivanwave, I have a question about your water purifiers.",
   )}`;

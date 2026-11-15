@@ -40,6 +40,7 @@ export function ProductCard({ product, priority }: { product: Product; priority?
         <ProductImage
           product={product}
           priority={priority}
+          loading={priority ? "eager" : undefined}
           className="transition-transform duration-300 group-hover:scale-[1.03]"
         />
         {product.badge ? (

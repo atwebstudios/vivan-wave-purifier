@@ -7,6 +7,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProductImage } from "@/components/product/ProductImage";
 import { ProductPurchase } from "@/components/product/ProductPurchase";
 import { ProductReviews } from "@/components/product/ProductReviews";
+import { ProductCancellationPolicy } from "@/components/product/ProductCancellationPolicy";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { Price } from "@/components/ui/Price";
 import { Rating } from "@/components/ui/Rating";
@@ -70,7 +71,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
               Always Available
             </span>
-            <ProductImage product={product} priority className="rounded-3xl" />
+            <ProductImage product={product} priority loading="eager" className="rounded-3xl" />
           </div>
 
           {/* Info */}
@@ -101,7 +102,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
               </span>
               <span className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500">
                 <Eye className="h-4 w-4" />
-                {viewersNow(product.id)} people are viewing this
+                {viewersNow(product.id)} people are viewing right now
               </span>
             </div>
             <div className="mt-4">
@@ -142,6 +143,9 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
             </dl>
           </div>
         ) : null}
+
+        {/* Cancellation & Refund Policy */}
+        <ProductCancellationPolicy />
 
         {/* Reviews */}
         <ProductReviews product={product} />

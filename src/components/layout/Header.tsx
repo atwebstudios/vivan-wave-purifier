@@ -18,8 +18,8 @@ const primaryNav = [
   { href: "/contact", label: "Contact" },
 ];
 
-const PHONE_DISPLAY = "+91 99990 12123";
-const PHONE_TEL = "tel:+919999012123";
+const PHONE_DISPLAY = "+91 9310 880635";
+const PHONE_TEL = "tel:+919310880635";
 
 export function Header() {
   const { totals, ready, openCart } = useCart();

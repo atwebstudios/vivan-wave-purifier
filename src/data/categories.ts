@@ -43,8 +43,8 @@ export const categories: Category[] = [
   },
   {
     slug: "spare-filters",
-    name: "Spare Filters",
-    tagline: "Replacement sediment, yarn & mesh filters.",
+    name: "Pre Filters",
+    tagline: "Replacement sediment, yarn & mesh pre-filtration cartridges.",
     gradient: "from-slate-500 to-slate-400",
   },
 ];
@@ -52,5 +52,6 @@ export const categories: Category[] = [
 export const categoryBySlug = new Map(categories.map((c) => [c.slug, c]));
 
 export function getCategory(slug: string): Category | undefined {
+  if (slug === "pre-filters") return categoryBySlug.get("spare-filters");
   return categoryBySlug.get(slug as Category["slug"]);
 }

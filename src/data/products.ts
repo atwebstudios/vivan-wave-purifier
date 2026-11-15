@@ -368,10 +368,12 @@ export const products: Product[] = [
       { label: "Installation", value: "Wall-mounted / Main Line (included)" },
     ],
     images: ["/products/hydro-prime.png"],
-    price: 12600,
+    price: 12800,
     mrp: 18000,
     rating: 4.7,
     reviewCount: 46,
+    isFeatured: true,
+    badge: "bestseller",
     tag: "iron",
     highlights: [
       "3-stage whole-house filtration",
@@ -381,7 +383,7 @@ export const products: Product[] = [
       "Easy to maintain",
       "Free installation",
     ],
-    variants: single(12600, 18000),
+    variants: single(12800, 18000),
   },
   {
     id: "tf-clear-pro",
@@ -399,7 +401,7 @@ export const products: Product[] = [
       { label: "Installation", value: "Wall-mounted / Main Line (included)" },
     ],
     images: ["/products/clear-pro.png"],
-    price: 9900,
+    price: 8800,
     mrp: 15000,
     rating: 4.7,
     reviewCount: 58,
@@ -412,7 +414,7 @@ export const products: Product[] = [
       "Great value",
       "Free installation",
     ],
-    variants: single(9900, 15000),
+    variants: single(8800, 15000),
   },
   {
     id: "tf-clear-pro-iron",
@@ -662,7 +664,8 @@ export function getProduct(slug: string): Product | undefined {
 }
 
 export function getProductsByCategory(category: string): Product[] {
-  return products.filter((p) => p.category === category);
+  const target = category === "pre-filters" ? "spare-filters" : category;
+  return products.filter((p) => p.category === target);
 }
 
 export function getFeaturedProducts(): Product[] {

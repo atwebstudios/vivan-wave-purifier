@@ -8,6 +8,8 @@ import {
   Handshake,
   BadgeCheck,
   Check,
+  MapPin,
+  Phone,
 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -219,6 +221,46 @@ export default function AboutPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Office & Headquarter */}
+      <section className="border-t border-slate-200 bg-slate-50 py-14 sm:py-16">
+        <Container>
+          <div className="mx-auto max-w-2xl text-center">
+            <span className="text-xs font-bold uppercase tracking-wider text-brand-600">Headquarters</span>
+            <h2 className="mt-2 text-2xl font-bold tracking-tight text-ink sm:text-3xl">Visit or reach our office</h2>
+            <p className="mt-3 text-muted">
+              Vivan Wave operations, customer support, and water consultation headquarters in Noida.
+            </p>
+          </div>
+
+          <div className="mx-auto mt-8 max-w-xl rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+            <div className="flex items-start gap-4">
+              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 text-white">
+                <MapPin className="h-6 w-6" strokeWidth={1.8} />
+              </span>
+              <div>
+                <h3 className="font-bold text-ink">Office Address</h3>
+                <p className="mt-1 text-sm leading-relaxed text-slate-700">
+                  Vivan Wave, Ace Medley Avenue, 3rd Floor Shop no 28 &amp; Lower Ground Floor Shop No 1, Sector 149, Noida, UP - 201306
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6 flex flex-col justify-between gap-3 border-t border-slate-100 pt-5 sm:flex-row sm:items-center">
+              <div className="flex items-center gap-2 text-sm text-slate-700">
+                <Phone className="h-4 w-4 text-brand-600" />
+                <span>Phone:</span>
+                <a href="tel:+919310880635" className="font-semibold text-brand-700 hover:underline">
+                  +91 9310 880635
+                </a>
+              </div>
+              <ButtonLink href="/contact" size="sm" variant="outline">
+                Contact Page &rarr;
+              </ButtonLink>
+            </div>
           </div>
         </Container>
       </section>

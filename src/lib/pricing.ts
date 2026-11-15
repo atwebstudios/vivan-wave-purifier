@@ -19,19 +19,25 @@ export function formatINR(amount: number): string {
 /**
  * Deterministic "units sold recently" figure derived from a product id, so every
  * product shows a different number and it stays identical between server and client
- * renders (no hydration mismatch, no flicker). Range ~9–41.
+ * renders (no hydration mismatch, no flicker). Range 2–6.
  */
 export function soldRecently(id: string): number {
   let hash = 0;
   for (let i = 0; i < id.length; i++) hash = (hash * 31 + id.charCodeAt(i)) >>> 0;
-  return 9 + (hash % 33);
+  return 2 + (hash % 5);
 }
 
-/** Deterministic "people viewing this product right now" figure (~6–23). */
+/**
+ * Deterministic "people viewing right now" figure derived from a product id.
+ * Shows 5 by default, with some random products showing 6–7.
+ */
 export function viewersNow(id: string): number {
   let hash = 0;
-  for (let i = 0; i < id.length; i++) hash = (hash * 37 + id.charCodeAt(i)) >>> 0;
-  return 6 + (hash % 18);
+  for (let i = 0; i < id.length; i++) hash = (hash * 23 + id.charCodeAt(i)) >>> 0;
+  const rem = hash % 10;
+  if (rem === 0 || rem === 1) return 6;
+  if (rem === 2 || rem === 3) return 7;
+  return 5;
 }
 
 /**

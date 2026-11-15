@@ -24,7 +24,7 @@ const chipLabels: Record<string, string> = {
   "iron-removers": "Iron Removers",
   "tank-filters": "Tank Filters",
   "ro-ionizers": "RO + Ionizers",
-  "spare-filters": "Spares",
+  "spare-filters": "Pre Filters",
 };
 
 type OpFilter = "all" | "Manual" | "Automatic";

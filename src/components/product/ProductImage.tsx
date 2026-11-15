@@ -13,15 +13,18 @@ export function ProductImage({
   product,
   className,
   priority,
+  loading,
 }: {
   product: Product;
   className?: string;
   priority?: boolean;
+  loading?: "lazy" | "eager";
 }) {
   const category = getCategory(product.category);
   const src = product.images[0];
 
   if (src) {
+    const isEager = priority || loading === "eager";
     return (
       <div
         className={cn(
@@ -34,6 +37,7 @@ export function ProductImage({
           alt={product.name}
           fill
           priority={priority}
+          loading={isEager ? "eager" : "lazy"}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           className="object-contain p-3"
         />
