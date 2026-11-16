@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Droplet } from "lucide-react";
 import { getCategory } from "@/data/categories";
 import type { Product } from "@/lib/types";
-import { cn } from "@/lib/utils";
+import { cn, assetSrc } from "@/lib/utils";
 
 /**
  * Renders a real product image when available, otherwise a branded CSS placeholder
@@ -33,7 +33,7 @@ export function ProductImage({
         )}
       >
         <Image
-          src={src}
+          src={assetSrc(src)}
           alt={product.name}
           fill
           priority={priority}

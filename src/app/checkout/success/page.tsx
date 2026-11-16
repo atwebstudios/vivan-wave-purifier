@@ -77,8 +77,8 @@ export default async function OrderSuccessPage({ searchParams }: PageProps<"/che
               <div className="rounded-2xl border border-brand-100 bg-brand-50/60 p-5">
                 <p className="text-xs font-bold uppercase tracking-wide text-brand-700">· Next Steps</p>
                 <p className="mt-3 text-sm leading-relaxed text-slate-700">
-                  Expert installation will be scheduled within <strong>24 hours</strong>. Our team will
-                  contact you shortly to confirm the preferred time.
+                  Your order will be safely packed and dispatched within <strong>24 hours</strong>. Our team will
+                  contact you shortly to confirm delivery details.
                 </p>
               </div>
 

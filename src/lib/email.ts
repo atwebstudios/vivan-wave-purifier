@@ -73,7 +73,7 @@ function customerReceiptHtml(data: OrderEmailData): string {
       <!-- Greeting -->
       <h2 style="margin:0 0 8px;color:#0f172a;font-size:20px;">Thank you, ${data.customer.name}!</h2>
       <p style="margin:0 0 20px;color:#64748b;font-size:14px;line-height:1.6;">
-        Your order has been placed successfully. We'll contact you within 24 hours to schedule expert installation.
+        Your order has been placed successfully. We'll contact you within 24 hours to confirm dispatch and delivery details.
       </p>
 
       <!-- Order ID Box -->
@@ -101,14 +101,13 @@ function customerReceiptHtml(data: OrderEmailData): string {
             <td style="padding:10px 0 4px;color:#0f766e;font-size:15px;font-weight:700;">Paid Now</td>
             <td style="padding:10px 0 4px;text-align:right;font-size:18px;font-weight:700;color:#0f766e;">${formatCurrency(data.amountDueNow)}</td>
           </tr>
-          ${
-            data.remainingPaise > 0
-              ? `<tr>
+          ${data.remainingPaise > 0
+      ? `<tr>
               <td style="padding:4px 0;color:#64748b;font-size:14px;">Balance (on delivery)</td>
               <td style="padding:4px 0;text-align:right;font-size:14px;font-weight:600;color:#dc2626;">${formatCurrency(data.remainingPaise)}</td>
             </tr>`
-              : ""
-          }
+      : ""
+    }
         </table>
       </div>
 

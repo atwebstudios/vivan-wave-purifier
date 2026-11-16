@@ -4,8 +4,9 @@ import { notFound } from "next/navigation";
 import { Check, Flame, Eye } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ProductImage } from "@/components/product/ProductImage";
+import { ProductGallery } from "@/components/product/ProductGallery";
 import { ProductPurchase } from "@/components/product/ProductPurchase";
+import { ProductVariantProvider } from "@/components/product/ProductVariantContext";
 import { ProductReviews } from "@/components/product/ProductReviews";
 import { ProductCancellationPolicy } from "@/components/product/ProductCancellationPolicy";
 import { ProductGrid } from "@/components/product/ProductGrid";
@@ -64,70 +65,78 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
           <span className="text-slate-700">{product.name}</span>
         </nav>
 
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
-          {/* Gallery */}
-          <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white lg:sticky lg:top-24 lg:self-start">
-            <span className="absolute left-4 top-4 z-10 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-xs font-semibold text-emerald-700 shadow-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-              Always Available
-            </span>
-            <ProductImage product={product} priority loading="eager" className="rounded-3xl" />
+        <ProductVariantProvider product={product}>
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
+            {/* Gallery with Zoom */}
+            <ProductGallery product={product} priority />
+
+            {/* Info */}
+            <div>
+              <div className="flex flex-wrap items-center gap-2">
+                {category ? (
+                  <Link
+                    href={`/products/category/${category.slug}`}
+                    className="text-sm font-semibold text-brand-600 hover:text-brand-700"
+                  >
+                    {category.name}
+                  </Link>
+                ) : null}
+                {product.badge ? (
+                  <span
+                    className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold tracking-wide ${product.badge === "premium"
+                        ? "bg-gold-500 text-white"
+                        : "bg-brand-600 text-white"
+                      }`}
+                  >
+                    {product.badge === "premium" ? "PREMIUM SERIES" : "BESTSELLER"}
+                  </span>
+                ) : null}
+              </div>
+              <h1 className="mt-2 text-3xl font-bold tracking-tight text-ink">{product.name}</h1>
+              {product.tag ? (
+                <span
+                  className={`mt-3 inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold ${tagMeta[product.tag].className}`}
+                >
+                  {tagMeta[product.tag].label}
+                </span>
+              ) : null}
+              <div className="mt-3">
+                <Rating value={product.rating} count={product.reviewCount} />
+              </div>
+              <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5">
+                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-red-600">
+                  <Flame className="h-4 w-4 fill-red-500 text-red-500" />
+                  {soldRecently(product.id)} sold in last 24 hours
+                </span>
+                <span className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500">
+                  <Eye className="h-4 w-4" />
+                  {viewersNow(product.id)} people are viewing right now
+                </span>
+              </div>
+              <div className="mt-4">
+                <Price price={product.price} mrp={product.mrp} size="lg" />
+                <p className="mt-1 text-xs text-muted">Inclusive of all taxes.</p>
+              </div>
+
+              <p className="mt-5 text-slate-700">{product.longDesc}</p>
+
+              {product.highlights.length > 0 ? (
+                <ul className="mt-5 space-y-2">
+                  {product.highlights.map((h) => (
+                    <li key={h} className="flex items-start gap-2 text-sm text-slate-700">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+
+              <div className="mt-6">
+                <ProductPurchase product={product} />
+              </div>
+            </div>
           </div>
-
-          {/* Info */}
-          <div>
-            {category ? (
-              <Link
-                href={`/products/category/${category.slug}`}
-                className="text-sm font-semibold text-brand-600"
-              >
-                {category.name}
-              </Link>
-            ) : null}
-            <h1 className="mt-2 text-3xl font-bold tracking-tight text-ink">{product.name}</h1>
-            {product.tag ? (
-              <span
-                className={`mt-3 inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold ${tagMeta[product.tag].className}`}
-              >
-                {tagMeta[product.tag].label}
-              </span>
-            ) : null}
-            <div className="mt-3">
-              <Rating value={product.rating} count={product.reviewCount} />
-            </div>
-            <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5">
-              <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-red-600">
-                <Flame className="h-4 w-4 fill-red-500 text-red-500" />
-                {soldRecently(product.id)} sold in last 24 hours
-              </span>
-              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500">
-                <Eye className="h-4 w-4" />
-                {viewersNow(product.id)} people are viewing right now
-              </span>
-            </div>
-            <div className="mt-4">
-              <Price price={product.price} mrp={product.mrp} size="lg" />
-              <p className="mt-1 text-xs text-muted">Inclusive of all taxes.</p>
-            </div>
-
-            <p className="mt-5 text-slate-700">{product.longDesc}</p>
-
-            {product.highlights.length > 0 ? (
-              <ul className="mt-5 space-y-2">
-                {product.highlights.map((h) => (
-                  <li key={h} className="flex items-start gap-2 text-sm text-slate-700">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
-                    {h}
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-
-            <div className="mt-6">
-              <ProductPurchase product={product} />
-            </div>
-          </div>
-        </div>
+        </ProductVariantProvider>
 
         {/* Specs */}
         {product.specs.length > 0 ? (

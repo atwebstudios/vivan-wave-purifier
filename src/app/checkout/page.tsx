@@ -179,13 +179,13 @@ export default function CheckoutPage() {
             } else {
               setPaymentError(
                 "Payment could not be verified. Please contact us with your payment ID: " +
-                  response.razorpay_payment_id,
+                response.razorpay_payment_id,
               );
             }
           } catch {
             setPaymentError(
               "Verification failed. Don't worry — if your payment was deducted, contact us with Payment ID: " +
-                response.razorpay_payment_id,
+              response.razorpay_payment_id,
             );
           }
           setLoading(false);
@@ -368,7 +368,7 @@ export default function CheckoutPage() {
 
           <dl className="mt-4 space-y-2.5 border-t border-slate-100 pt-4 text-sm">
             <Row label="Subtotal" value={formatINR(totals.subtotal)} />
-            <Row label="Installation" value="Free" valueClass="text-emerald-600 font-semibold" />
+            <Row label="Delivery" value="Pan-India" valueClass="text-emerald-600 font-semibold" />
             <Row label="Taxes" value="Included" muted />
           </dl>
 

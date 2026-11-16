@@ -10,7 +10,7 @@ import { deriveMrp } from "@/lib/pricing";
  *    single GST-inclusive selling price; MRP is auto-derived (deriveMrp) so a 15–20% "off"
  *    shows. Prices are final — no GST added, no breakup.
  *  - Tank Filters & Spare Filters: real MRP + price from their list (24–40% off) are used as-is.
- *  - Every product is always available (no stock field). Delivery & installation are included.
+ *  - Every product is always available (no stock field). Pan-India delivery.
  */
 
 // ---- Variant builders for the multi-axis vessel families ----
@@ -97,7 +97,7 @@ const aquaCleanVariants = buildVariants([
 ]);
 
 // ================= DUAL VESSEL COMBO =================
-// One package price; offered in both Manual & Automatic control (same price).
+// One package price; offered in Automatic control.
 function comboRows(): Row[] {
   const base: { mat: "FRP" | "SS304"; size: string; conn?: string; price: number }[] = [
     { mat: "FRP", size: "13×54", price: 88800 },
@@ -111,8 +111,7 @@ function comboRows(): Row[] {
     { mat: "SS304", size: "16×65", conn: '1"', price: 169800 },
     { mat: "SS304", size: "16×65", conn: '1.5"', price: 183800 },
   ];
-  const ops: Operation[] = ["Manual", "Automatic"];
-  return ops.flatMap((op) => base.map((b) => ({ op, ...b })));
+  return base.map((b) => ({ op: "Automatic" as const, ...b }));
 }
 const comboVariants = buildVariants(comboRows());
 
@@ -145,7 +144,7 @@ export const products: Product[] = [
       { label: "Vessel Sizes", value: "10×54, 13×54, 14×65, 16×65 (inch)" },
       { label: "Connection", value: "1\" / 1.5\" (on 14×65 & 16×65)" },
       { label: "Technology", value: "Ion-Exchange Softening" },
-      { label: "Installation", value: "Whole House / Main Line (included)" },
+      { label: "Installation", value: "Whole House / Main Line" },
     ],
     images: [
       "/products/water-softener-automatic.png",
@@ -166,7 +165,6 @@ export const products: Product[] = [
       "Efficient ion-exchange reduces calcium & magnesium",
       "Manual, Automatic & SS304 options",
       "User-friendly & low maintenance",
-      "Free whole-house installation",
     ],
     variants: softenerVariants,
   },
@@ -186,7 +184,7 @@ export const products: Product[] = [
       { label: "Vessel Sizes", value: "10×54, 13×54, 14×65, 16×65 (inch)" },
       { label: "Connection", value: "1\" / 1.5\" (on 14×65 & 16×65)" },
       { label: "Type", value: "Whole-House Filtration Vessel" },
-      { label: "Installation", value: "Whole House / Main Line (included)" },
+      { label: "Installation", value: "Whole House / Main Line" },
     ],
     images: [
       "/products/aqua-clean-automatic.png",
@@ -206,7 +204,6 @@ export const products: Product[] = [
       "Odour & taste control",
       "Scale protection for pipes & appliances",
       "Reduces dirt, rust & suspended sediment",
-      "Free whole-house installation",
     ],
     variants: aquaCleanVariants,
   },
@@ -217,16 +214,16 @@ export const products: Product[] = [
     slug: "dual-vessel-combo",
     name: "Vivanwave Dual Vessel Combo (Aqua Clean + Softener + Brine Tank)",
     category: "dual-combo",
-    shortDesc: "Complete system: Aqua Clean + Water Softener + Brine Tank.",
+    shortDesc: "Complete system: Aqua Clean + Water Softener + Brine Tank (Automatic).",
     longDesc:
-      "The Vivanwave Dual Vessel Combo is a complete whole-house water system that pairs an Aqua Clean filtration vessel with a Water Softener vessel of the same size, plus the Brine Tank — filtration and softening in one package. Choose Manual or Automatic control and an FRP or SS304 build. The selected vessel size applies to both vessels.",
+      "The Vivanwave Dual Vessel Combo is a complete whole-house water system that pairs an Aqua Clean filtration vessel with a Water Softener vessel of the same size, plus the Brine Tank — filtration and softening in one package. Automatic operation with an FRP or SS304 build. The selected vessel size applies to both vessels.",
     specs: [
       { label: "Includes", value: "Aqua Clean + Water Softener + Brine Tank" },
-      { label: "Operation", value: "Manual / Automatic" },
+      { label: "Operation", value: "Automatic" },
       { label: "Material", value: "FRP or SS304 Stainless Steel" },
       { label: "Vessel Sizes (each)", value: "13×54, 14×65, 16×65 (inch)" },
       { label: "Connection", value: "1\" / 1.5\" (on 14×65 & 16×65)" },
-      { label: "Installation", value: "Whole House / Main Line (included)" },
+      { label: "Installation", value: "Whole House / Main Line" },
     ],
     images: ["/products/dual-combo-frp.png", "/products/dual-combo-ss304.png"],
     ...fromCheapest(comboVariants),
@@ -235,15 +232,14 @@ export const products: Product[] = [
     isFeatured: true,
     badge: "premium",
     tag: "multistage",
-    operations: ["Manual", "Automatic"],
-    variantAxes: [...VESSEL_AXES],
+    operations: ["Automatic"],
+    variantAxes: ["material", "size", "connection"],
     highlights: [
       "Filtration + softening in one complete system",
       "Aqua Clean + Water Softener + Brine Tank included",
       "Same size applies to both vessels",
-      "Manual, Automatic & SS304 options",
+      "Automatic operation & SS304 options",
       "Best value whole-house solution",
-      "Free installation",
     ],
     variants: comboVariants,
   },
@@ -262,7 +258,7 @@ export const products: Product[] = [
       { label: "Operation", value: "Manual / Automatic" },
       { label: "Material", value: "FRP" },
       { label: "Vessel Sizes", value: "10×54, 13×54 (inch)" },
-      { label: "Installation", value: "Whole House / Main Line (included)" },
+      { label: "Installation", value: "Whole House / Main Line" },
     ],
     images: ["/products/pro-iron-automatic.png", "/products/pro-iron-manual.png"],
     ...fromCheapest(ironVariants),
@@ -299,9 +295,9 @@ export const products: Product[] = [
       { label: "Stage 2", value: "Washable UF Filter" },
       { label: "Stage 3", value: "Hardness Reduction Carbon Filter" },
       { label: "Stage 4", value: "Iron & Scale Reduction Filter" },
-      { label: "Installation", value: "Wall-mounted / Main Line (included)" },
+      { label: "Installation", value: "Wall-mounted / Main Line" },
     ],
-    images: ["/products/hydro-ultra.png"],
+    images: ["/products/hydro-ultra-filter.png"],
     price: 19800,
     mrp: 30000,
     rating: 4.9,
@@ -315,7 +311,6 @@ export const products: Product[] = [
       "Hardness reduction carbon stage",
       "Iron & scale reduction stage",
       "Whole-house / mainline fit",
-      "Free installation",
     ],
     variants: single(19800, 30000),
   },
@@ -333,7 +328,7 @@ export const products: Product[] = [
       { label: "Stage 2", value: "Washable UF Filter" },
       { label: "Stage 3", value: "Hardness Reduction Carbon Filter" },
       { label: "Stage 4", value: "Iron & Scale Reduction Filter" },
-      { label: "Installation", value: "Wall-mounted / Main Line (included)" },
+      { label: "Installation", value: "Wall-mounted / Main Line" },
     ],
     images: ["/products/clear-guard.png"],
     price: 15900,
@@ -348,7 +343,6 @@ export const products: Product[] = [
       "Washable UF filter",
       "Hardness reduction carbon",
       "Iron & scale reduction",
-      "Free installation",
     ],
     variants: single(15900, 26500),
   },
@@ -365,7 +359,7 @@ export const products: Product[] = [
       { label: "Stage 1", value: "Sediment Bag Filter" },
       { label: "Stage 2", value: "Hardness Reduction Carbon Filter" },
       { label: "Stage 3", value: "Iron & Scale Reduction Filter" },
-      { label: "Installation", value: "Wall-mounted / Main Line (included)" },
+      { label: "Installation", value: "Wall-mounted / Main Line" },
     ],
     images: ["/products/hydro-prime.png"],
     price: 12800,
@@ -381,7 +375,6 @@ export const products: Product[] = [
       "Hardness reduction carbon",
       "Iron & scale reduction",
       "Easy to maintain",
-      "Free installation",
     ],
     variants: single(12800, 18000),
   },
@@ -398,7 +391,7 @@ export const products: Product[] = [
       { label: "Stage 1", value: "Sediment Bag Filter" },
       { label: "Stage 2", value: "Hardness Reduction Carbon Filter" },
       { label: "Stage 3", value: "Iron & Scale Reduction Filter" },
-      { label: "Installation", value: "Wall-mounted / Main Line (included)" },
+      { label: "Installation", value: "Wall-mounted / Main Line" },
     ],
     images: ["/products/clear-pro.png"],
     price: 8800,
@@ -412,7 +405,6 @@ export const products: Product[] = [
       "Hardness reduction carbon",
       "Iron & scale reduction",
       "Great value",
-      "Free installation",
     ],
     variants: single(8800, 15000),
   },
@@ -429,7 +421,7 @@ export const products: Product[] = [
       { label: "Stage 1", value: "Sediment Bag Filter" },
       { label: "Stage 2", value: "Hardness Reduction Carbon Filter" },
       { label: "Stage 3", value: "Iron Reduction Filter" },
-      { label: "Installation", value: "Wall-mounted / Main Line (included)" },
+      { label: "Installation", value: "Wall-mounted / Main Line" },
     ],
     images: ["/products/clear-pro-iron.png"],
     price: 11900,
@@ -443,7 +435,6 @@ export const products: Product[] = [
       "Sediment bag first stage",
       "Hardness reduction carbon",
       "Reduces staining & metallic taste",
-      "Free installation",
     ],
     variants: single(11900, 17000),
   },
@@ -459,7 +450,7 @@ export const products: Product[] = [
       { label: "Stages", value: "2 Stage" },
       { label: "Stage 1", value: "Sediment Bag + Anti Scaling Filter" },
       { label: "Stage 2", value: "Hardness Reduction Carbon Filter" },
-      { label: "Installation", value: "Wall-mounted / Main Line (included)" },
+      { label: "Installation", value: "Wall-mounted / Main Line" },
     ],
     images: ["/products/hydro-lite.png"],
     price: 9900,
@@ -473,7 +464,6 @@ export const products: Product[] = [
       "Hardness reduction carbon",
       "Easy install & maintenance",
       "Whole-house / mainline fit",
-      "Free installation",
     ],
     variants: single(9900, 15000),
   },
@@ -489,7 +479,7 @@ export const products: Product[] = [
       { label: "Stages", value: "2 Stage" },
       { label: "Stage 1", value: "Sediment Bag + Anti Scaling Filter" },
       { label: "Stage 2", value: "Hardness Reduction Carbon Filter" },
-      { label: "Installation", value: "Wall-mounted / Main Line (included)" },
+      { label: "Installation", value: "Wall-mounted / Main Line" },
     ],
     images: ["/products/clear-plus.png"],
     price: 6900,
@@ -503,7 +493,6 @@ export const products: Product[] = [
       "Hardness reduction carbon",
       "Most affordable whole-house filter",
       "Easy to maintain",
-      "Free installation",
     ],
     variants: single(6900, 11500),
   },
@@ -519,7 +508,7 @@ export const products: Product[] = [
       { label: "Stages", value: "2 Stage" },
       { label: "Stage 1", value: "Sediment Bag + Anti Scaling Filter" },
       { label: "Stage 2", value: "Iron Reduction Filter" },
-      { label: "Installation", value: "Wall-mounted / Main Line (included)" },
+      { label: "Installation", value: "Wall-mounted / Main Line" },
     ],
     images: ["/products/clear-plus-iron.png"],
     price: 8000,
@@ -533,7 +522,6 @@ export const products: Product[] = [
       "Sediment bag + anti-scaling stage",
       "Reduces staining & odour",
       "Compact & easy install",
-      "Free installation",
     ],
     variants: single(8000, 12500),
   },
@@ -553,7 +541,7 @@ export const products: Product[] = [
       { label: "Output", value: "Up to 50 LPH" },
       { label: "Controls", value: "Smart Touchscreen Display" },
       { label: "Water Type", value: "Alkaline, Mineral-Balanced" },
-      { label: "Installation", value: "Countertop / Wall Mount (included)" },
+      { label: "Installation", value: "Countertop / Wall Mount" },
       { label: "Best for", value: "Homes, Offices & Cafes" },
     ],
     images: ["/Ionizer.png"],

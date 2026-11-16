@@ -54,6 +54,10 @@ export default function CartPage() {
                         <span className="mb-1 inline-flex items-center gap-1 rounded-full bg-gold-500/15 px-2 py-0.5 text-[10px] font-bold tracking-wide text-gold-600">
                           PREMIUM SERIES
                         </span>
+                      ) : product.badge === "bestseller" ? (
+                        <span className="mb-1 inline-flex items-center gap-1 rounded-full bg-brand-600/15 px-2 py-0.5 text-[10px] font-bold tracking-wide text-brand-700">
+                          BESTSELLER
+                        </span>
                       ) : null}
                       <Link
                         href={`/products/${product.slug}`}
@@ -81,15 +85,15 @@ export default function CartPage() {
             ))}
           </div>
 
-          {/* Installation banner */}
+          {/* Delivery banner */}
           <div className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-cloud p-4">
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-600">
               <Truck className="h-5 w-5" strokeWidth={1.8} />
             </span>
             <div>
-              <p className="text-sm font-semibold text-ink">Free Standard Installation</p>
+              <p className="text-sm font-semibold text-ink">Pan-India Delivery</p>
               <p className="text-sm text-muted">
-                Our certified technicians will set up your device within 48 hours of delivery.
+                Safely packed and dispatched directly from our warehouse to your doorstep.
               </p>
             </div>
           </div>
@@ -114,8 +118,8 @@ export default function CartPage() {
               <dd className="font-semibold text-ink">{formatINR(totals.subtotal)}</dd>
             </div>
             <div className="flex justify-between">
-              <dt className="text-slate-600">Standard Installation</dt>
-              <dd className="font-semibold text-emerald-600">Free</dd>
+              <dt className="text-slate-600">Delivery</dt>
+              <dd className="font-semibold text-emerald-600">Pan-India</dd>
             </div>
           </dl>
 
@@ -125,14 +129,14 @@ export default function CartPage() {
               <BadgeCheck className="h-5 w-5" />
               <div>
                 <p className="text-sm font-bold leading-tight">Advance Payable Now (10%)</p>
-                <p className="text-xs text-brand-100">Secure your order and schedule installation.</p>
+                <p className="text-xs text-brand-100">Secure your order and dispatch.</p>
               </div>
             </div>
             <span className="text-xl font-bold">{formatINR(totals.minAdvance)}</span>
           </div>
 
           <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-5">
-            <span className="font-semibold text-ink">Balance Due at Installation</span>
+            <span className="font-semibold text-ink">Balance Due on Delivery</span>
             <span className="font-bold text-ink">{formatINR(totals.balanceDue)}</span>
           </div>
 
