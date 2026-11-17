@@ -185,6 +185,7 @@ export function ProductImageZoomModal({
               src={assetSrc(currentImage)}
               alt={`${productName} zoomed image`}
               fill
+              unoptimized
               priority
               sizes="100vw"
               className="object-contain"

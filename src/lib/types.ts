@@ -51,8 +51,10 @@ export interface Variant {
 
 export interface Product {
   id: string;
+  sku?: string;
   slug: string;
   name: string;
+  subtitle?: string;
   category: CategorySlug;
   shortDesc: string;
   longDesc: string;

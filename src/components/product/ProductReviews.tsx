@@ -44,7 +44,14 @@ function Stars({ value, className }: { value: number; className?: string }) {
 }
 
 /** Customer reviews block for the product detail page: summary + rating bars + review cards. */
-export function ProductReviews({ product }: { product: Product }) {
+export function ProductReviews({
+  product,
+  theme = "light",
+}: {
+  product: Product;
+  theme?: "light" | "dark";
+}) {
+  const isDark = theme === "dark";
   const list = getProductReviews(product);
   if (list.length === 0) return null;
 
@@ -60,28 +67,46 @@ export function ProductReviews({ product }: { product: Product }) {
 
   return (
     <section className="mt-16">
-      <h2 className="text-xl font-bold text-ink">Customer Reviews</h2>
+      <h2 className={cn("text-xl font-bold", isDark ? "text-white" : "text-ink")}>Customer Reviews</h2>
 
-      <div className="mt-5 grid gap-8 rounded-2xl border border-slate-200 bg-white p-6 sm:grid-cols-[220px_1fr]">
+      <div
+        className={cn(
+          "mt-5 grid gap-8 rounded-2xl border p-6 sm:grid-cols-[220px_1fr]",
+          isDark
+            ? "border-slate-800 bg-slate-900/80 text-slate-200 shadow-lg"
+            : "border-slate-200 bg-white",
+        )}
+      >
         {/* Summary */}
-        <div className="flex flex-col items-center justify-center border-slate-100 text-center sm:border-r sm:pr-6">
-          <p className="text-4xl font-extrabold text-ink">{product.rating.toFixed(1)}</p>
+        <div
+          className={cn(
+            "flex flex-col items-center justify-center text-center sm:border-r sm:pr-6",
+            isDark ? "border-slate-800" : "border-slate-100",
+          )}
+        >
+          <p className={cn("text-4xl font-extrabold", isDark ? "text-white" : "text-ink")}>
+            {product.rating.toFixed(1)}
+          </p>
           <Stars value={product.rating} className="mt-1" />
-          <p className="mt-1 text-sm text-muted">{total.toLocaleString("en-IN")} verified reviews</p>
+          <p className={cn("mt-1 text-sm", isDark ? "text-slate-400" : "text-muted")}>
+            {total.toLocaleString("en-IN")} verified reviews
+          </p>
         </div>
 
         {/* Distribution bars */}
         <div className="space-y-1.5">
           {[5, 4, 3, 2, 1].map((n) => (
             <div key={n} className="flex items-center gap-3 text-sm">
-              <span className="flex w-8 items-center gap-0.5 text-slate-600">
+              <span className={cn("flex w-8 items-center gap-0.5", isDark ? "text-slate-300" : "text-slate-600")}>
                 {n}
                 <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
               </span>
-              <span className="h-2 flex-1 overflow-hidden rounded-full bg-slate-100">
+              <span className={cn("h-2 flex-1 overflow-hidden rounded-full", isDark ? "bg-slate-800" : "bg-slate-100")}>
                 <span className="block h-full rounded-full bg-amber-400" style={{ width: `${pct(n)}%` }} />
               </span>
-              <span className="w-9 text-right text-xs text-muted">{pct(n)}%</span>
+              <span className={cn("w-9 text-right text-xs", isDark ? "text-slate-400" : "text-muted")}>
+                {pct(n)}%
+              </span>
             </div>
           ))}
         </div>
@@ -90,7 +115,15 @@ export function ProductReviews({ product }: { product: Product }) {
       {/* Review cards */}
       <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2">
         {list.map((r) => (
-          <article key={r.id} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <article
+            key={r.id}
+            className={cn(
+              "rounded-2xl border p-5 shadow-sm transition-all",
+              isDark
+                ? "border-slate-800 bg-slate-900/80 text-slate-300 shadow-md"
+                : "border-slate-200 bg-white",
+            )}
+          >
             <div className="flex items-center gap-3">
               <span
                 className={cn(
@@ -101,26 +134,33 @@ export function ProductReviews({ product }: { product: Product }) {
                 {initials(r.name)}
               </span>
               <div className="min-w-0">
-                <p className="flex items-center gap-1.5 font-semibold text-ink">
+                <p className={cn("flex items-center gap-1.5 font-semibold", isDark ? "text-white" : "text-ink")}>
                   {r.name}
                   {r.verified ? (
-                    <span className="inline-flex items-center gap-0.5 text-xs font-medium text-emerald-600">
+                    <span className="inline-flex items-center gap-0.5 text-xs font-medium text-emerald-400">
                       <BadgeCheck className="h-3.5 w-3.5" /> Verified
                     </span>
                   ) : null}
                 </p>
-                <p className="text-xs text-muted">
+                <p className={cn("text-xs", isDark ? "text-slate-400" : "text-muted")}>
                   {r.city} • {r.date}
                 </p>
               </div>
             </div>
 
             <Stars value={r.rating} className="mt-3" />
-            <h3 className="mt-2 text-sm font-semibold text-ink">{r.title}</h3>
-            <p className="mt-1 text-sm leading-relaxed text-slate-600">{r.body}</p>
+            <h3 className={cn("mt-2 text-sm font-semibold", isDark ? "text-white" : "text-ink")}>{r.title}</h3>
+            <p className={cn("mt-1 text-sm leading-relaxed", isDark ? "text-slate-300" : "text-slate-600")}>
+              {r.body}
+            </p>
 
             {r.photo ? (
-              <div className="relative mt-3 h-24 w-32 overflow-hidden rounded-lg border border-slate-100">
+              <div
+                className={cn(
+                  "relative mt-3 h-24 w-32 overflow-hidden rounded-lg border",
+                  isDark ? "border-slate-700" : "border-slate-100",
+                )}
+              >
                 <Image
                   src={r.photo}
                   alt={`Installation by ${r.name}`}

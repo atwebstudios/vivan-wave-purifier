@@ -9,6 +9,7 @@ import { ProductPurchase } from "@/components/product/ProductPurchase";
 import { ProductVariantProvider } from "@/components/product/ProductVariantContext";
 import { ProductReviews } from "@/components/product/ProductReviews";
 import { ProductCancellationPolicy } from "@/components/product/ProductCancellationPolicy";
+import { IonizerFlagshipView } from "@/components/product/IonizerFlagshipView";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { Price } from "@/components/ui/Price";
 import { Rating } from "@/components/ui/Rating";
@@ -41,6 +42,11 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
 
   const category = getCategory(product.category);
   const related = getRelatedProducts(product);
+
+  // Dedicated Ultra-Luxury Flagship View for RO + Ionizer
+  if (product.category === "ro-ionizers") {
+    return <IonizerFlagshipView product={product} category={category} related={related} />;
+  }
 
   return (
     <div className="py-10 sm:py-12">
@@ -81,18 +87,26 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
                     {category.name}
                   </Link>
                 ) : null}
+                {product.sku ? (
+                  <span className="rounded-md border border-slate-200 bg-slate-50 px-2 py-0.5 font-mono text-[11px] font-semibold text-slate-600">
+                    SKU: {product.sku}
+                  </span>
+                ) : null}
                 {product.badge ? (
                   <span
                     className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold tracking-wide ${product.badge === "premium"
-                        ? "bg-gold-500 text-white"
-                        : "bg-brand-600 text-white"
+                      ? "bg-gold-500 text-white"
+                      : "bg-brand-600 text-white"
                       }`}
                   >
                     {product.badge === "premium" ? "PREMIUM SERIES" : "BESTSELLER"}
                   </span>
                 ) : null}
               </div>
-              <h1 className="mt-2 text-3xl font-bold tracking-tight text-ink">{product.name}</h1>
+              <h1 className="mt-2 text-2xl font-bold tracking-tight text-ink sm:text-3xl">{product.name}</h1>
+              {product.subtitle ? (
+                <p className="mt-1 text-sm font-medium text-brand-700 sm:text-base">{product.subtitle}</p>
+              ) : null}
               {product.tag ? (
                 <span
                   className={`mt-3 inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold ${tagMeta[product.tag].className}`}

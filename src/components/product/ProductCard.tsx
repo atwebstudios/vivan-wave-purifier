@@ -60,12 +60,19 @@ export function ProductCard({ product, priority }: { product: Product; priority?
       </Link>
 
       <div className="flex flex-1 flex-col gap-3 p-4">
-        <Link
-          href={`/products/${product.slug}`}
-          className="line-clamp-2 font-semibold text-ink hover:text-brand-700"
-        >
-          {product.name}
-        </Link>
+        <div>
+          {product.sku ? (
+            <span className="mb-1 inline-block font-mono text-[10px] font-bold text-brand-700 tracking-wider">
+              SKU: {product.sku}
+            </span>
+          ) : null}
+          <Link
+            href={`/products/${product.slug}`}
+            className="line-clamp-2 font-semibold text-ink hover:text-brand-700"
+          >
+            {product.name}
+          </Link>
+        </div>
 
         <div className="flex flex-wrap items-center gap-2">
           {product.tag ? (
