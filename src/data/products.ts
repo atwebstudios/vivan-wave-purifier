@@ -304,7 +304,6 @@ export const products: Product[] = [
     reviewCount: 63,
     isFeatured: true,
     badge: "premium",
-    tag: "iron",
     highlights: [
       "Complete 4-stage protection",
       "Sediment Yarn + Washable UF",
@@ -336,7 +335,6 @@ export const products: Product[] = [
     rating: 4.8,
     reviewCount: 51,
     isFeatured: true,
-    tag: "iron",
     highlights: [
       "4-stage whole-house filtration",
       "1 Life Mesh first stage",
@@ -526,6 +524,186 @@ export const products: Product[] = [
     variants: single(8000, 12500),
   },
 
+  // ==================== 20-INCH HEAVY-DUTY WASHING MACHINE WATER FILTERS ====================
+  {
+    id: "wm-filter-blue",
+    sku: "VWWMBLUE",
+    badge: "bestseller",
+    slug: "vivanwave-20-inch-washing-machine-filter-blue",
+    name: "Vivanwave 20-Inch Heavy-Duty Washing Machine Water Filter with Sediment Bag & Anti-Scaling Technology (Blue Cap)",
+    subtitle: "Long-Lasting Solution for Hard Water, Limescale & Muddy Water | Top Load & Front Load",
+    category: "tank-filters",
+    shortDesc:
+      "20-Inch Heavy-Duty Washing Machine Water Filter with Sediment Bag & Anti-Scaling Media. 1-Year Cartridge Life.",
+    longDesc:
+      "Why Choose Vivanwave 20-Inch Filter Over Ordinary Small Filters?\n\nMost washing machine filters available in the market come in small, compact sizes whose cartridges get choked in just 4 to 6 months, forcing you to spend money on frequent replacements.\n\nThe Vivanwave 20-Inch Heavy-Duty Filter (Royal Blue Cap) is a solid, permanent solution engineered for Indian water conditions. Its large 20-inch housing holds significantly higher filtration capacity—keeping your water clean, protecting your expensive appliances year-round, and giving you up to 1 full year of hassle-free performance without frequent maintenance.\n\nHow It Works (Simple & Effective):\n• Sediment Bag: Traps mud, dust, and rust before water enters your machine, ensuring only crystal-clear water reaches your laundry.\n• Anti-Scaling Media: Controls hard-water minerals to stop limescale from forming inside the machine drum and heating coil. This protects your washing machine, extends appliance life, and delivers noticeably cleaner, brighter, and softer clothes.",
+    specs: [
+      { label: "Brand", value: "Vivanwave" },
+      { label: "SKU", value: "VWWMBLUE" },
+      { label: "Cap Color", value: "Royal Blue Cap" },
+      { label: "Product Size & Type", value: "20-Inch Heavy-Duty Single-Stage Water Filter (01)" },
+      {
+        label: "Filtration Media",
+        value: "High-Capacity Sediment Bag + Polyphosphate Anti-Scaling Media",
+      },
+      {
+        label: "Pressure Gauge",
+        value: "Built-In Analog PSI Gauge (0–100 PSI) with Air-Release Valve",
+      },
+      {
+        label: "Compatibility",
+        value: "All Front-Load & Top-Load Washing Machines (also ideal for Geyser & Dishwasher inlets)",
+      },
+      {
+        label: "Body Material",
+        value: "Heavy-Duty BPA-Free Food-Grade Housing with Wall-Mount Bracket",
+      },
+      {
+        label: "Cartridge Life",
+        value: "Up to 1 Year (varies based on raw water quality and laundry usage)",
+      },
+      {
+        label: "Appliance Protection",
+        value: "Drum, Heating Coil, Solenoid Valves & Internal Plumbing",
+      },
+      {
+        label: "Mounting Type",
+        value: "Wall Mountable with Heavy-Duty Steel Bracket",
+      },
+      {
+        label: "Flow Rate",
+        value: "High-Flow Rate with Zero Pressure Drop",
+      },
+    ],
+    images: [
+      "/products/washing-machine-filter-blue.png",
+      "/products/washing-machine-clothes-softness.jpg",
+      "/products/washing-machine-drum-protection.jpg",
+      "/products/washing-machine-compatibility.png",
+    ],
+    mrp: 5100,
+    price: 4400,
+    rating: 4.9,
+    reviewCount: 58,
+    isFeatured: true,
+    highlights: [
+      "20-Inch Heavy-Duty Size (1 Year Life): Unlike small, ordinary filters that clog up in just 4–6 months, this full-size 20-inch system is built as a long-term, permanent solution with up to 1 year of cartridge life.",
+      "Dual-Action 01 Filtration: Combines a high-capacity Sediment Bag to trap mud, rust, and dust with Anti-Scaling media to stop hard-water mineral deposits.",
+      "Built-In Pressure Gauge: Lets you monitor water pressure in real time so you know the exact moment the cartridge needs cleaning or replacement.",
+      "Protects Your Appliances: Prevents limescale buildup on the drum, heating coil, and inlet valves—extending the life of your washing machine and reducing costly repairs.",
+      "Brighter, Softer Laundry: Stops mineral stiffness and yellow/muddy stains, keeping whites bright and fabrics soft.",
+      "Universal Compatibility: Fits all standard Top-Load and Front-Load washing machines (LG, Samsung, Bosch, IFB, Whirlpool, Haier, etc.) with zero drop in water flow.",
+    ],
+    faqs: [
+      {
+        q: "How is this better than small washing machine filters?",
+        a: "Ordinary small filters have limited media capacity and get choked within 4 to 6 months. Our 20-inch heavy-duty system acts as a permanent, high-capacity solution that lasts up to 1 year, protects your appliances better, and handles heavy mud and hard water effortlessly.",
+      },
+      {
+        q: "Does it clean muddy or rusty water before it enters the washing machine?",
+        a: "Yes. The integrated Sediment Bag traps mud, sand, dust, and rust particles so clean, clear water reaches your clothes.",
+      },
+      {
+        q: "Will this fit my washing machine?",
+        a: "Yes. It works seamlessly with all brands of both Front-Load and Top-Load washing machines (LG, Samsung, Bosch, IFB, Whirlpool, Haier, etc.).",
+      },
+      {
+        q: "Will it remove old limescale already inside my machine?",
+        a: "This filter prevents new limescale from forming. To clear heavy existing scale inside an older drum, run a single cycle with a descaling tablet, and let the Vivanwave 20-Inch Filter keep it scale-free going forward.",
+      },
+    ],
+    variants: single(4400, 5100),
+  },
+  {
+    id: "wm-filter-black",
+    sku: "VWWMBLACK",
+    badge: "bestseller",
+    slug: "vivanwave-20-inch-washing-machine-filter-black",
+    name: "Vivanwave 20-Inch Heavy-Duty Washing Machine Water Filter — Black Cap",
+    subtitle: "Sediment Bag & Anti-Scaling Technology | Top Load & Front Load (Black Cap)",
+    category: "tank-filters",
+    shortDesc:
+      "20-Inch Heavy-Duty Washing Machine Water Filter with Sediment Bag & Anti-Scaling Media. 1-Year Cartridge Life.",
+    longDesc:
+      "Why Choose Vivanwave 20-Inch Filter Over Ordinary Small Filters?\n\nMost washing machine filters available in the market come in small, compact sizes whose cartridges get choked in just 4 to 6 months, forcing you to spend money on frequent replacements.\n\nThe Vivanwave 20-Inch Heavy-Duty Filter (Matte Black Cap) is a solid, permanent solution engineered for Indian water conditions. Its large 20-inch housing holds significantly higher filtration capacity—keeping your water clean, protecting your expensive appliances year-round, and giving you up to 1 full year of hassle-free performance without frequent maintenance.\n\nHow It Works (Simple & Effective):\n• Sediment Bag: Traps mud, dust, and rust before water enters your machine, ensuring only crystal-clear water reaches your laundry.\n• Anti-Scaling Media: Controls hard-water minerals to stop limescale from forming inside the machine drum and heating coil. This protects your washing machine, extends appliance life, and delivers noticeably cleaner, brighter, and softer clothes.",
+    specs: [
+      { label: "Brand", value: "Vivanwave" },
+      { label: "SKU", value: "VWWMBLACK" },
+      { label: "Cap Color", value: "Matte Black Cap" },
+      { label: "Product Size & Type", value: "20-Inch Heavy-Duty Single-Stage Water Filter (01)" },
+      {
+        label: "Filtration Media",
+        value: "High-Capacity Sediment Bag + Polyphosphate Anti-Scaling Media",
+      },
+      {
+        label: "Pressure Gauge",
+        value: "Built-In Analog PSI Gauge (0–100 PSI) with Air-Release Valve",
+      },
+      {
+        label: "Compatibility",
+        value: "All Front-Load & Top-Load Washing Machines (also ideal for Geyser & Dishwasher inlets)",
+      },
+      {
+        label: "Body Material",
+        value: "Heavy-Duty BPA-Free Food-Grade Housing with Wall-Mount Bracket",
+      },
+      {
+        label: "Cartridge Life",
+        value: "Up to 1 Year (varies based on raw water quality and laundry usage)",
+      },
+      {
+        label: "Appliance Protection",
+        value: "Drum, Heating Coil, Solenoid Valves & Internal Plumbing",
+      },
+      {
+        label: "Mounting Type",
+        value: "Wall Mountable with Heavy-Duty Steel Bracket",
+      },
+      {
+        label: "Flow Rate",
+        value: "High-Flow Rate with Zero Pressure Drop",
+      },
+    ],
+    images: [
+      "/products/washing-machine-filter-black.png",
+      "/products/washing-machine-clothes-softness.jpg",
+      "/products/washing-machine-drum-protection.jpg",
+      "/products/washing-machine-compatibility.png",
+    ],
+    mrp: 4200,
+    price: 3680,
+    rating: 4.8,
+    reviewCount: 46,
+    isFeatured: true,
+    highlights: [
+      "20-Inch Heavy-Duty Size (1 Year Life): Unlike small, ordinary filters that clog up in just 4–6 months, this full-size 20-inch system is built as a long-term, permanent solution with up to 1 year of cartridge life.",
+      "Dual-Action 01 Filtration: Combines a high-capacity Sediment Bag to trap mud, rust, and dust with Anti-Scaling media to stop hard-water mineral deposits.",
+      "Built-In Pressure Gauge: Lets you monitor water pressure in real time so you know the exact moment the cartridge needs cleaning or replacement.",
+      "Protects Your Appliances: Prevents limescale buildup on the drum, heating coil, and inlet valves—extending the life of your washing machine and reducing costly repairs.",
+      "Brighter, Softer Laundry: Stops mineral stiffness and yellow/muddy stains, keeping whites bright and fabrics soft.",
+      "Universal Compatibility: Fits all standard Top-Load and Front-Load washing machines (LG, Samsung, Bosch, IFB, Whirlpool, Haier, etc.) with zero drop in water flow.",
+    ],
+    faqs: [
+      {
+        q: "How is this better than small washing machine filters?",
+        a: "Ordinary small filters have limited media capacity and get choked within 4 to 6 months. Our 20-inch heavy-duty system acts as a permanent, high-capacity solution that lasts up to 1 year, protects your appliances better, and handles heavy mud and hard water effortlessly.",
+      },
+      {
+        q: "Does it clean muddy or rusty water before it enters the washing machine?",
+        a: "Yes. The integrated Sediment Bag traps mud, sand, dust, and rust particles so clean, clear water reaches your clothes.",
+      },
+      {
+        q: "Will this fit my washing machine?",
+        a: "Yes. It works seamlessly with all brands of both Front-Load and Top-Load washing machines (LG, Samsung, Bosch, IFB, Whirlpool, Haier, etc.).",
+      },
+      {
+        q: "Will it remove old limescale already inside my machine?",
+        a: "This filter prevents new limescale from forming. To clear heavy existing scale inside an older drum, run a single cycle with a descaling tablet, and let the Vivanwave 20-Inch Filter keep it scale-free going forward.",
+      },
+    ],
+    variants: single(3680, 4200),
+  },
+
   // ==================== RO + IONIZER ====================
   {
     id: "ro-ionizer-50",
@@ -695,7 +873,9 @@ export function searchProducts(query: string): Product[] {
     (p) =>
       p.name.toLowerCase().includes(q) ||
       p.shortDesc.toLowerCase().includes(q) ||
-      p.category.toLowerCase().includes(q),
+      p.category.toLowerCase().includes(q) ||
+      (p.sku && p.sku.toLowerCase().includes(q)) ||
+      p.slug.toLowerCase().includes(q),
   );
 }
 

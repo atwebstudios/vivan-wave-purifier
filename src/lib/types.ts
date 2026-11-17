@@ -81,6 +81,8 @@ export interface Product {
   variantAxes?: VariantAxis[];
   /** Marketing highlight bullets shown on the product page. */
   highlights: string[];
+  /** Optional product-specific FAQs. */
+  faqs?: { q: string; a: string }[];
   /** Purchasable variants. First entry is the default. */
   variants: Variant[];
 }

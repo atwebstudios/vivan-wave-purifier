@@ -10,7 +10,9 @@ import { ProductVariantProvider } from "@/components/product/ProductVariantConte
 import { ProductReviews } from "@/components/product/ProductReviews";
 import { ProductCancellationPolicy } from "@/components/product/ProductCancellationPolicy";
 import { IonizerFlagshipView } from "@/components/product/IonizerFlagshipView";
+import { WashingMachineFilterView } from "@/components/product/WashingMachineFilterView";
 import { ProductGrid } from "@/components/product/ProductGrid";
+import { FaqAccordion } from "@/components/home/FaqAccordion";
 import { Price } from "@/components/ui/Price";
 import { Rating } from "@/components/ui/Rating";
 import { getCategory } from "@/data/categories";
@@ -46,6 +48,11 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
   // Dedicated Ultra-Luxury Flagship View for RO + Ionizer
   if (product.category === "ro-ionizers") {
     return <IonizerFlagshipView product={product} category={category} related={related} />;
+  }
+
+  // Dedicated High-End Appliance View for 20-Inch Washing Machine Water Filters
+  if (product.slug.includes("washing-machine-filter")) {
+    return <WashingMachineFilterView product={product} category={category} related={related} />;
   }
 
   return (
@@ -164,6 +171,14 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
                 </div>
               ))}
             </dl>
+          </div>
+        ) : null}
+
+        {/* Product FAQs */}
+        {product.faqs && product.faqs.length > 0 ? (
+          <div className="mt-14">
+            <h2 className="text-xl font-bold text-ink mb-4">Frequently Asked Questions</h2>
+            <FaqAccordion items={product.faqs} />
           </div>
         ) : null}
 

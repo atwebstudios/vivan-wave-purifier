@@ -15,15 +15,15 @@ export function Hero() {
     <section className="relative flex items-center overflow-hidden rounded-b-[2.5rem] lg:min-h-[calc(100dvh-93px)]">
       {/* Background image */}
       <Image
-        src="/hero-bg-2.png"
-        alt=""
+        src="/bg-image-hero.png"
+        alt="Vivanwave Complete Home & Appliance Water Solutions"
         fill
         priority
         sizes="100vw"
-        className="absolute inset-0 -z-20 object-cover"
+        className="absolute inset-0 -z-20 object-cover object-right md:object-center"
       />
-      {/* Subtle left overlay for headline legibility */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-white/60 via-white/25 to-transparent" />
+      {/* Legibility overlay: soft vertical gradient on mobile, directional fade on desktop to showcase the product lineup */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white/90 via-white/70 to-white/30 sm:bg-gradient-to-r sm:from-white/70 sm:via-white/25 sm:to-transparent" />
 
       <Container className="relative grid w-full items-center gap-8 py-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:py-4">
         {/* Text */}
@@ -58,10 +58,8 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Glass with revolving water-quality text ring (desktop: right column) */}
-        <div className="hidden lg:block">
-          <HeroGlassRing />
-        </div>
+        {/* Spacer to let the background showcase (Ionizer, Softener, Vessel, Tank Filter & Model) shine through */}
+        <div className="hidden lg:block min-h-[480px] pointer-events-none" aria-hidden="true" />
       </Container>
     </section>
   );
