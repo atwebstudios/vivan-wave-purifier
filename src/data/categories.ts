@@ -37,8 +37,8 @@ export const categories: Category[] = [
   },
   {
     slug: "ro-ionizers",
-    name: "RO + Ionizers",
-    tagline: "Smart RO purification with alkaline ionized water.",
+    name: "Ionizer",
+    tagline: "Smart alkaline water purification with antioxidant -ORP.",
     gradient: "from-slate-800 to-brand-700",
   },
   {
@@ -53,5 +53,6 @@ export const categoryBySlug = new Map(categories.map((c) => [c.slug, c]));
 
 export function getCategory(slug: string): Category | undefined {
   if (slug === "pre-filters") return categoryBySlug.get("spare-filters");
+  if (slug === "ionizers" || slug === "ionizer") return categoryBySlug.get("ro-ionizers");
   return categoryBySlug.get(slug as Category["slug"]);
 }

@@ -102,9 +102,9 @@ export default function ContactPage() {
 
       {/* Form + info */}
       <section className="bg-white py-14 sm:py-16">
-        <Container className="grid grid-cols-1 gap-8 lg:grid-cols-[1.15fr_1fr]">
-          {/* Form */}
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+        <Container className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[1.15fr_1fr]">
+          {/* Form (Sticky on desktop until right column scrolls) */}
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:sticky lg:top-28 lg:self-start">
             <h2 className="text-2xl font-bold text-ink">Send us a message</h2>
             <p className="mt-1 text-sm text-muted">
               Tell us about your water and space, and we&apos;ll recommend the right system.

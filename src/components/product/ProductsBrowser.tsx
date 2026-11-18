@@ -23,7 +23,7 @@ const chipLabels: Record<string, string> = {
   "dual-combo": "Combo",
   "iron-removers": "Iron Removers",
   "tank-filters": "Tank Filters",
-  "ro-ionizers": "RO + Ionizers",
+  "ro-ionizers": "Ionizer",
   "spare-filters": "Pre Filters",
 };
 
